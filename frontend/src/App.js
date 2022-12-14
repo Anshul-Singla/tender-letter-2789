@@ -1,12 +1,14 @@
 
-import { Inputform } from "./components/projects/form";
-import { Projects } from "./components/projects/projects";
+import './App.css';
+import AllRoutes from './routers/AllRoutes';
 
 function App() {
   return (
-    <div>
-      <Projects/>
+    <div className="App">
+     <AllRoutes/>
+     <Projects/>
       <Inputform/>
+
     </div>
   );
 }
