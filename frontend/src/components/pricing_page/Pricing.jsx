@@ -8,6 +8,7 @@ import {
   Flex,
   HStack,
   List,
+  ListIcon,
   ListItem,
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -21,6 +22,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { RxCross1 } from "react-icons/rx";
 import {
   Slider,
   SliderTrack,
@@ -157,22 +160,70 @@ const Pricing = () => {
                 </Text>
               </Box>
               <List fontSize="16px" fontWeight="600">
-                <ListItem>Unlimited projects and clients</ListItem>
-                <ListItem>Reporting</ListItem>
-                <ListItem>Timer button in 50+ web apps</ListItem>
-                <ListItem>Calendar integrations: Google, Outlook</ListItem>
-                <ListItem>Billable rates and money tracking</ListItem>
-                <ListItem>Budgeting for projects</ListItem>
-                <ListItem>Invoicing</ListItem>
-                <ListItem>Screenshots capturing</ListItem>
-                <ListItem>Client logins for access to reports</ListItem>
-                <ListItem>Paid time off tracking</ListItem>
-                <ListItem>Payroll for employees</ListItem>
-                <ListItem>Time tracking permissions</ListItem>
-                <ListItem>Time-sync with Jira and QuickBooks</ListItem>
-                <ListItem>Time-sync with GitLab and Redmine</ListItem>
-                <ListItem>Work Schedule</ListItem>
-                <ListItem>Team Dashboard</ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Unlimited projects and clients
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Reporting
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Timer button in 50+ web apps
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Calendar integrations: Google, Outlook
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Billable rates and money tracking
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Budgeting for projects
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Invoicing
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Screenshots capturing
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Client logins for access to reports
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Paid time off tracking
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Payroll for employees
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Time tracking permissions
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Time-sync with Jira and QuickBooks
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Time-sync with GitLab and Redmine
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Work Schedule
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Team Dashboard
+                </ListItem>
               </List>
             </VStack>
           </Box>
@@ -192,22 +243,77 @@ const Pricing = () => {
                 </Text>
               </Box>
               <List fontSize="16px" fontWeight="600">
-                <ListItem>Unlimited projects and clients</ListItem>
-                <ListItem>Reporting</ListItem>
-                <ListItem>Timer button in 50+ web apps</ListItem>
-                <ListItem>Calendar integrations: Google, Outlook</ListItem>
-                <ListItem>Billable rates and money tracking</ListItem>
-                <ListItem>Budgeting for projects</ListItem>
-                <ListItem>Invoicing</ListItem>
-                <ListItem>Screenshots capturing</ListItem>
-                <ListItem>Client logins for access to reports</ListItem>
-                <ListItem>Paid time off tracking</ListItem>
-                <ListItem>Payroll for employees</ListItem>
-                <ListItem>Time tracking permissions</ListItem>
-                <ListItem>Time-sync with Jira and QuickBooks</ListItem>
-                <ListItem>Time-sync with GitLab and Redmine</ListItem>
-                <ListItem>Work Schedule</ListItem>
-                <ListItem>Team Dashboard</ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Unlimited projects and clients
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Reporting
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Timer button in 50+ web apps
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Calendar integrations: Google, Outlook
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Billable rates and money tracking
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Budgeting for projects
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Invoicing
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={AiFillCheckCircle} color="green.500" />
+                  Screenshots capturing
+                </ListItem>
+                <ListItem mt={2}>
+                  <ListIcon as={RxCross1} color="gray" />
+                  Client logins for access to reports
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Paid time off tracking
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Payroll for employees
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Time tracking permissions
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Time-sync with Jira and QuickBooks
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Time-sync with GitLab and Redmine
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Work Schedule
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Team Dashboard
+                </ListItem>
               </List>
             </VStack>
           </Box>
@@ -227,22 +333,86 @@ const Pricing = () => {
                 </Text>
               </Box>
               <List fontSize="16px" fontWeight="600">
-                <ListItem>Unlimited projects and clients</ListItem>
-                <ListItem>Reporting</ListItem>
-                <ListItem>Timer button in 50+ web apps</ListItem>
-                <ListItem>Calendar integrations: Google, Outlook</ListItem>
-                <ListItem>Billable rates and money tracking</ListItem>
-                <ListItem>Budgeting for projects</ListItem>
-                <ListItem>Invoicing</ListItem>
-                <ListItem>Screenshots capturing</ListItem>
-                <ListItem>Client logins for access to reports</ListItem>
-                <ListItem>Paid time off tracking</ListItem>
-                <ListItem>Payroll for employees</ListItem>
-                <ListItem>Time tracking permissions</ListItem>
-                <ListItem>Time-sync with Jira and QuickBooks</ListItem>
-                <ListItem>Time-sync with GitLab and Redmine</ListItem>
-                <ListItem>Work Schedule</ListItem>
-                <ListItem>Team Dashboard</ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Unlimited projects and clients
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Reporting
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Timer button in 50+ web apps
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Calendar integrations: Google, Outlook
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Billable rates and money tracking
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Budgeting for projects
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Invoicing
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Screenshots capturing
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Client logins for access to reports
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Paid time off tracking
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Payroll for employees
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Time tracking permissions
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Time-sync with Jira and QuickBooks
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Time-sync with GitLab and Redmine
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Work Schedule
+                </ListItem>
+                <ListItem mt={2}>
+                  {" "}
+                  <ListIcon as={RxCross1} color="gray" />
+                  Team Dashboard
+                </ListItem>
               </List>
             </VStack>
           </Box>
