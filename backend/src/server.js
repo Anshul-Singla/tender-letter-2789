@@ -1,21 +1,26 @@
 const express = require("express");
-
+const dbconnect = require("./config/db.connect");
 const cors = require("cors");
-
-// let PORT = process.env.PORT || 8080;
+const projectRoute = require("./features/projects/routes");
+//-----------------------------------------------------------
 let PORT = 8080;
-
-
+//------------------------------------------------------------
 const app = express();
-
+//------------------------------------------------------------
 app.use(express.json());
 app.use(cors());
-
+//-------------------------------------------------------------
 app.get("/", (req, res) => {
-  res.send("<h1>LIFE IS AWESOME...</h1>");
+  res.send("LIFE IS AWESOME...");
 });
 
-app.listen(PORT, () => {
- 
+//:::::::::::project Route:::::::::::::::::::
+
+app.use("/project", projectRoute);
+
+//-------------------------------------------------------------
+
+app.listen(PORT, async () => {
+  await dbconnect;
   console.log(`Listening on http://localhost:${PORT}`);
 });
