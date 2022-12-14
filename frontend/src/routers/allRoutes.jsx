@@ -1,7 +1,7 @@
 import React from 'react'
 import Tracker from '../components/Time_Tracker/Tracker'
 import { Route, Routes } from "react-router-dom";
-import Landing from "../components/landing_page/Landing";
+import Landing from "../components/landing_page/landing";
 
 const AllRoutes = () => {
   return (
