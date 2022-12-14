@@ -9,10 +9,9 @@ const Navbar = () => {
     console.log('style:', style)
   return (
     <Box 
-    border=".5px solid grey"
+    borderBottom=".5px solid grey"
     padding='15px 0'
     position='relative'
-    margin='0 auto'
     top={0}
     left={0}
     w="100vw"
