@@ -14,7 +14,7 @@ const Navbar = () => {
     position='relative'
     top={0}
     left={0}
-    w="100vw"
+    w="99vw"
     backgroundColor="#fff"
      >
         <Flex justifyContent='space-between' alignItems='center' w="90%" margin='0 auto'> 
