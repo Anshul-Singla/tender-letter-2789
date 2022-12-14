@@ -23,9 +23,10 @@ projectRoute.get("/show", async (req, res) => {
 projectRoute.post("/update/:id", async (req, res) => {
   const { id } = req.params;
   const { desc } = req.body;
+  console.log(desc)
   if (desc) {
-    let project = await projectModel.findByIdAndUpdate({ _id: id }, { desc });
-    return res.status(200).send({message:"data update successfully",project});
+    await projectModel.findByIdAndUpdate({ _id: id }, { desc:desc });
+    return res.status(200).send({message:"data update successfully"});
   } else {
     res.send("send valid data");
   }

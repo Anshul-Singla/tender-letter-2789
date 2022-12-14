@@ -15,18 +15,21 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 //----------------------------------
+
 export const Projects = () => {
   const [data, setData] = useState([]);
 
+  //--------------------------------
+  const getData = async () => {
+    await axios
+      .get("http://localhost:8080/project/show")
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err.message));
+  };
+  
   //:::::::::: GETTING DATA ON UI :::::::::::::
 
   useEffect(() => {
-    const getData = async () => {
-      await axios
-        .get("http://localhost:8080/project/show")
-        .then((res) => setData(res.data))
-        .catch((err) => console.log(err.message));
-    };
     getData();
   }, []);
   console.log(data);
@@ -59,8 +62,10 @@ export const Projects = () => {
     console.log(update);
     try {
       await axios
-        .post(`http://localhost:8080/project/update/${id}`)
-        .then((res) => console.log(res.data));
+        .post(`http://localhost:8080/project/update/${id}`, {
+          desc: update,
+        })
+        .then((res) => getData());
     } catch (err) {
       console.log(err.message);
     }
