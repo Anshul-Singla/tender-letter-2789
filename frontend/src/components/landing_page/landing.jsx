@@ -7,8 +7,8 @@ const Landing = () => {
     <Box>
         <Heading>LIFE IS AWESOME...</Heading>
         <Navbar/>
-        <Box>LANDING PAGE</Box>
-        <Box>Footer</Box>
+        {/* <Box>LANDING PAGE</Box> */}
+        {/* <Box>Footer</Box> */}
     </Box>
   )
 }

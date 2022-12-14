@@ -1,0 +1,36 @@
+/* #click{
+    border: 2px dashed red;
+} */
+#show{
+    width: 99.9vw;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    padding: 50px 0;
+    display: none;
+}
+#click:hover #show{
+    display: block;
+}
+.integrationCompanies > img{
+    width: 50px;
+}
+.integrationCompanies{
+    margin: 10px;
+}
+.integrationCompaniesHeading{
+    margin-bottom: 10px;
+}
+.integrationCompaniesHeading:hover{
+    color:#3070f0
+}
+.btnHover{
+    padding: 8px 13px;
+    border-radius:10px;
+    border: 1px solid #3070f0;
+    /* font-weight: 500; */
+}
+.btnHover:hover{
+    background-color: #3070f0;
+    color: #fff;
+}
