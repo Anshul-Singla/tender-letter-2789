@@ -15,6 +15,8 @@ const Landing = () => {
            <SecondPart/>
            <ThirdPart/>
            <FourtPart/>
+           <FifthPart/>
+           <SixthPart/>
         </Box>
         {/* <Box>LANDING PAGE</Box> */}
         {/* <Box>Footer</Box> */}
@@ -238,6 +240,61 @@ const FourtPartCard = ({link}) => {
   return (
     <Box border='1px solid  #e2e7eb' padding="20px" borderRadius='10px' className='fourthPartCard'>
         <Image src={link} />
+    </Box>
+  )
+}
+const FifthPart = () =>{
+  return (
+    <Box backgroundColor='#fff2cc' p='10px 0 30px 0'>
+      {/* <Heading>LIFE IS AWESOME...</Heading> */}
+      <Flex flexDirection='column' justifyContent='center' alignItems='center' gap='1rem' >
+        <Heading  fontWeight='700' m='20px 0 0 0 '>Read Hundreds of Reviews</Heading>
+        <Image src='https://tmetric.com/media/rt1k0zjc/img-rating-4-5.svg' w={350} m='20px 0' />
+        <Heading size='2xl' fontWeight='500'>4.5 Customer Rating</Heading>
+        <Heading color='#3070f0'>242 Reviews</Heading>
+      </Flex>
+    </Box>
+  )
+}
+const SixthPart = () => {
+  const sixthPartCard = [
+    {
+      link:'https://tmetric.com/media/zrvmvbl3/icon-straightforward.svg',
+      text:" The most straightforward time tracking app"
+    },
+    {
+      link:'https://tmetric.com/media/opdfdo3l/icon-platforms.svg',
+      text:'Available on all platforms: macOS, Windows, Linux, iOS, and Android'
+    },
+    {
+      link:"https://tmetric.com/media/igkmpmix/icon-freetrial.svg",
+      text:"Free plan with basic time tracking for a team up to 5"
+    },
+    {
+      link:"https://tmetric.com/media/htxfmpoe/icon-reasonableprice.svg",
+      text:"Reasonable price makes it affordable for anyone"
+    },
+    {
+      link:"https://tmetric.com/media/0uyowzzu/icon-multilang.svg",
+      text:"Multilanguage solution"
+    }
+  ]
+  return (
+    <Box>
+      <Heading size='2xl' textAlign='center' fontWeight='600' margin='5rem 0 30px 0'>Why choose TMetric?</Heading>
+      <Flex width='90vw' m='0 auto' gap='2rem'>
+        {
+          sixthPartCard.map( c => <SixthPartCard link={c.link} text={c.text}/> )
+        }
+      </Flex>
+    </Box>
+  )
+}
+const SixthPartCard = ({link , text}) => {
+  return (
+    <Box border='1px solid #e2e7eb' w='15vw' p='40px 40px 10px 40px' borderRadius='15px' >
+      <Image src={link}/>
+      <Text> {text} </Text>
     </Box>
   )
 }
