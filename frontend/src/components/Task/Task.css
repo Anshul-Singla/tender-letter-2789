@@ -1,0 +1,31 @@
+.AiFillCheckCircle{
+    color:gray;
+    font-size:25px;
+   font-weight:500
+}
+.AiFillCheckCircle:hover{
+color:green;
+
+}
+
+.taskdiv{
+    display:flex;
+    gap: 35px;
+   align-items: center;
+ 
+  /* margin-left: 10px; */
+  /* border: 1px solid red; */
+  height: 45px;
+  
+}
+.taskdiv:hover{
+    background-color:#f1f4f5;
+}
+
+
+.sidebar{
+    border:5px solid gray;
+    width:20%;
+    height:auto
+}
+

@@ -6,10 +6,25 @@ const projectRoute = express.Router();
 
 projectRoute.post("/new", async (req, res) => {
   const { task, taskid, desc } = req.body;
-  console.log(task)
+  console.log(task);
   const project = new projectModel({ task, taskid, desc });
   await project.save();
   res.status(201).send(project);
+});
+
+//:::::::::::::::::::::: TOGGLE :::::::::::::::::::::::::::::
+
+projectRoute.post("/toggle", async (req, res) => {
+  const { done } = req.body;
+  console.log(done);
+  if (!done) {
+    const project = await projectModel.find({done:done});
+    res.status(201).send(project);
+  }
+  else{
+    const project = await projectModel.find({done:done});
+    res.status(201).send(project);
+  }
 });
 
 //::::::::::::::::::::::: GET :::::::::::::::::::::::::::::
@@ -22,10 +37,15 @@ projectRoute.get("/show", async (req, res) => {
 
 projectRoute.post("/update/:id", async (req, res) => {
   const { id } = req.params;
-  const { desc } = req.body;
+  const { desc, done } = req.body;
+  console.log(desc);
   if (desc) {
-    let project = await projectModel.findByIdAndUpdate({ _id: id }, { desc });
-    return res.status(200).send({message:"data update successfully",project});
+    await projectModel.findByIdAndUpdate({ _id: id }, { desc: desc });
+    return res.status(200).send({ message: "data update successfully" });
+  }
+  if (done) {
+    await projectModel.findByIdAndUpdate({ _id: id }, { done: done });
+    return res.status(200).send({ message: "data update successfully" });
   } else {
     res.send("send valid data");
   }
