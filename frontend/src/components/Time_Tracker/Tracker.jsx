@@ -27,6 +27,7 @@ import "react-timeline-bar/dist/index.css";
 import TimePicker from "react-time-picker";
 import { v4 as uuidv4 } from "uuid";
 import ActiveProject from "./ActiveProject";
+import axios from "axios";
 
 const Tracker = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,6 +48,21 @@ const Tracker = () => {
         end: ehour,
     });
     // console.log(form)
+
+    // // <<<<<<<<<<< GET DATA >>>>>>>>>>
+    // const GetData = async () => {
+    //     return (
+    //         await axios.get("http://localhost:8080/tracker/show")
+    //         .then((res) => {
+    //          console.log(res.data.time)
+    //         })
+    //     )
+    // }
+
+    // useEffect(() => {
+    //     GetData()
+    // }, [])
+
 
     // delete the task
     const DeleteProject = (id) => {
@@ -222,6 +238,7 @@ const Tracker = () => {
                 </Box>
             </Center>
 
+            {/* <<<<<<<<<<< FORM >>>>>>>>> */}
             <Center>
                 <form style={{ width: "80%", marginTop: "-1.5rem" }}>
                     <Fade in={isOpen}>
