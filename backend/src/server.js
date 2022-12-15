@@ -2,6 +2,7 @@ const express = require("express");
 const dbconnect = require("./config/db.connect");
 const cors = require("cors");
 const projectRoute = require("./features/projects/routes");
+const trackerRoute = require("./features/Time_Tracker/time.routes");
 //-----------------------------------------------------------
 let PORT = 8080;
 //------------------------------------------------------------
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 //:::::::::::project Route:::::::::::::::::::
-
+app.use("/tracker",trackerRoute)
 app.use("/project", projectRoute);
 
 //-------------------------------------------------------------
