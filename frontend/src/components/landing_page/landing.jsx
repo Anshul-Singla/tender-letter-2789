@@ -4,6 +4,7 @@ import React from 'react';
 import Navbar from '../navbar/Navbar';
 import {ArrowForwardIcon } from '@chakra-ui/icons';
 import style from './Landing.css'
+import Footer from '../pricing_page/Footer';
 
 const Landing = () => {
   return (
@@ -17,6 +18,7 @@ const Landing = () => {
            <FourtPart/>
            <FifthPart/>
            <SixthPart/>
+           <Footer/>
         </Box>
         {/* <Box>LANDING PAGE</Box> */}
         {/* <Box>Footer</Box> */}
