@@ -32,6 +32,7 @@ import {
 } from "@chakra-ui/react";
 import Footer from "./Footer";
 import { useState } from "react";
+import Hamburger from "../Hamburger/Hamburger";
 
 const Pricing = () => {
   const [sliderValue, setSliderValue] = React.useState(1);

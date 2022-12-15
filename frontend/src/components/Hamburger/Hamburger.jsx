@@ -2,7 +2,6 @@ import React from "react";
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -20,7 +19,9 @@ import {
   ListItem,
   ListIcon,
   Text,
+  Link,
 } from "@chakra-ui/react";
+import { Link as ReachLink } from "react-router-dom";
 import { BsArrowRight, BsFolderFill, BsStopwatchFill } from "react-icons/bs";
 import { RiBillFill, RiTeamFill } from "react-icons/ri";
 import { FaChartBar } from "react-icons/fa";
@@ -157,9 +158,11 @@ function Hamburger() {
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>
-              <Text mt={3} fontSize="20px" fontWeight="600">
-                Pricing
-              </Text>
+              <Link as={ReachLink}>
+                <Text mt={3} fontSize="20px" fontWeight="600">
+                  Pricing
+                </Text>
+              </Link>
               <hr />
               <Text mt={3} fontSize="20px" fontWeight="600">
                 Support
