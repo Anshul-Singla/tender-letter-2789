@@ -7,3 +7,9 @@
     border-radius: 10px;
     transform: scale(1.1);
 }
+.fourthPartCard{
+    transition: all 500ms ease-in-out;
+}
+.fourthPartCard:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}

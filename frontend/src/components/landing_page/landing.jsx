@@ -2,6 +2,7 @@ import { Box, Center, Flex, Heading, Text , Input, Button, Image, UnorderedList,
 import { EmailIcon} from '@chakra-ui/icons';
 import React from 'react';
 import Navbar from '../navbar/Navbar';
+import {ArrowForwardIcon } from '@chakra-ui/icons';
 import style from './Landing.css'
 
 const Landing = () => {
@@ -187,13 +188,57 @@ const ThirdPartCard = ({heading , list , link ,backgroundColor , flexDirection})
   )
 }
 const FourtPart = () => {
+  let cardLinks1 =[ 
+    'https://tmetric.com/media/cshbmvwf/logo-integration-gsuite.svg',
+    "https://tmetric.com/media/fnbggshs/logo-integration-msoffice.svg",
+    "https://tmetric.com/media/plvb1mg0/logo-integration-gkeep.svg",
+    "https://tmetric.com/media/smflyk5w/logo-integration-github.svg",
+    "https://tmetric.com/media/kbrcntmi/logo-integration-excel.svg",
+    "https://tmetric.com/media/4aeci1fh/logo-integration-asana.svg",
+    "https://tmetric.com/media/caxbzjss/logo-integration-jira.svg",
+    "https://tmetric.com/media/dw2nwjwv/logo-integration-gitlab.svg"
+  ]
+  let cardLinks2 =[
+    "https://tmetric.com/media/me5ih5eu/logo-integration-gdocs.svg",
+    "https://tmetric.com/media/0bzmfrlf/logo-integration-trello.svg",
+    "https://tmetric.com/media/sdaj41fi/logo-integration-redmine.svg",
+    "https://tmetric.com/media/1xedbfav/logo-integration-zendesk.svg",
+    "https://tmetric.com/media/n3dmgi1p/logo-integration-wrike.svg"
+  ]
   return (
     <Box>
-      <Heading>LIFE IS AWESOME...</Heading>
+      <Flex flexDirection='column' justifyContent='center' alignItems='center'gap='2rem' m='30px 0' >
+        <Heading size='2xl' maxWidth='60%' textAlign='center'>Integrate time tracker tool with 50+ popular services</Heading>
+        <Text fontSize='2xl'>TMetric integrates with dozens of services, which lets you measure progress and activity in any tool you use.</Text>
+        <Flex gap='3rem'  justifyContent='center' alignItems='center'>
+          <Button colorScheme='messenger'>
+            Start Free Trial
+          </Button>
+          <Box>
+            <Text fontSize='xl' color='#3070f0'>View All Integrations <ArrowForwardIcon/> </Text>
+          </Box>
+        </Flex>
+      </Flex>
+      <Box w="70%" m='0 auto'>
+        <Flex gap='1rem' justifyContent='center' alignItems='center' m='40px 0'>
+          {
+            cardLinks1.map(l => <FourtPartCard link={l}  /> )
+          }
+        </Flex>
+        <Flex  gap='3rem' justifyContent='center' alignItems='center' m='40px 0'>
+          {
+            cardLinks2.map(l => <FourtPartCard link={l}  /> )
+          }
+        </Flex>
+      </Box>
     </Box>
   )
 }
-const FourtPartCard = () => {
-  
+const FourtPartCard = ({link}) => {
+  return (
+    <Box border='1px solid  #e2e7eb' padding="20px" borderRadius='10px' className='fourthPartCard'>
+        <Image src={link} />
+    </Box>
+  )
 }
 export default Landing
