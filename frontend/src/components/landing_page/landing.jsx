@@ -1,7 +1,8 @@
-import { Box, Center, Flex, Heading, Text , Input, Button, Image } from '@chakra-ui/react';
-import { EmailIcon} from '@chakra-ui/icons'
-import React from 'react'
-import Navbar from '../navbar/Navbar'
+import { Box, Center, Flex, Heading, Text , Input, Button, Image, UnorderedList, ListItem } from '@chakra-ui/react';
+import { EmailIcon} from '@chakra-ui/icons';
+import React from 'react';
+import Navbar from '../navbar/Navbar';
+import style from './Landing.css'
 
 const Landing = () => {
   return (
@@ -11,6 +12,8 @@ const Landing = () => {
         <Box className='middleName'>
            <FirstPart/>
            <SecondPart/>
+           <ThirdPart/>
+           <FourtPart/>
         </Box>
         {/* <Box>LANDING PAGE</Box> */}
         {/* <Box>Footer</Box> */}
@@ -93,12 +96,12 @@ const SecondPart = () => {
   ]
   return (
     <Box m="50px 0">
-      <Center>
+      <Center p='20px 0' m='30px 0'>
         <Box w="60vw" textAlign='center'>
-          <Heading size='3xl' noOfLines={2} fontWeight='600' >Best time tracking features for your business</Heading>
+          <Heading size='3xl' noOfLines={2} fontWeight='700' >Best time tracking features for your business</Heading>
         </Box>
       </Center>
-      <Flex>
+      <Flex justifyContent='space-evenly'>
         <Image w={["1000px","800px"]} src='https://tmetric.com/media/1kxfndjp/img-advantages.svg' />
         <Flex flexDirection='column' >
         {
@@ -114,13 +117,83 @@ const SecondPart = () => {
 }
 const SecondPartCard = ({link , name}) => {
   return(
-    <Box>
-      <Flex>
+    <Box m='10px 0' className='secondPartCard'>
+      <Flex p='10px 50px 10px 10px' borderRadius='10px' border='1px solid #e2e7eb' gap='2rem' alignItems='center' >
         <Image src={link} />
-        <Heading> {name} </Heading>
+        <Heading size='md' fontWeight='500'> {name} </Heading>
       </Flex>
     </Box>
   )
-
+}
+const ThirdPart = () => {
+  const card =[ {
+    heading:"Take effective control of working time",
+    list :[
+      "timekeeping","sites and apps monitoring","activity tracking","screenshots capturing",
+      "task management","50+ integrations","work schedule"
+    ],
+    link:"https://tmetric.com/media/kssowlxe/img-activity-cases.svg",
+    backgroundColor:'#f6f7f8',
+    flexDirection:'row'
+  },
+  {
+    heading:"Achieve high profitability by using time tracker",
+    list:[
+      "project management","project budgeting",'billing and invoicing',"accurate payroll","accurate payroll"
+    ],
+    link:"https://tmetric.com/media/lltfuaaz/img-report-cases-svg.svg",
+    flexDirection:'row-reverse'
+  },
+  {
+    heading:"Improve attendance with time off tracking software",
+    list:[
+      "flexible time off policy","time off requests management","time off calendar","pto calculations",
+    ],
+    link:"https://tmetric.com/media/mlzbtxv5/time-off-calendar-case.svg",
+    flexDirection:'row'
+  }
+]
+  return (
+    <Box>
+      {
+        card.map(c => <ThirdPartCard  heading={c.heading} list={c.list} link={c.link}   />)
+      }
+    </Box>
+  )
+}
+const ThirdPartCard = ({heading , list , link ,backgroundColor , flexDirection}) => {
+  return(
+  <Box 
+  
+  // backgroundColor={`${backgroundColor}`}
+  >
+    <Flex w='90vw' m='0 auto' alignItems='center' flexDirection={flexDirection}>
+      <Box>
+        <Heading textAlign='center' m='20px 0'>{heading}</Heading>
+        <UnorderedList>
+          {
+            list.map(list => <ListItem fontSize='xl' m='5px 0'> {list} </ListItem> )
+          }
+        </UnorderedList>
+        <Center>
+          <Button colorScheme='messenger' m='10px 0'> Start Free Trial</Button>
+        </Center>
+      </Box>
+      <Box>
+        <Image src={link} width='100%'/>
+      </Box>
+    </Flex>
+  </Box>
+  )
+}
+const FourtPart = () => {
+  return (
+    <Box>
+      <Heading>LIFE IS AWESOME...</Heading>
+    </Box>
+  )
+}
+const FourtPartCard = () => {
+  
 }
 export default Landing
