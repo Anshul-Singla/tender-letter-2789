@@ -8,11 +8,11 @@ const Login = () => {
   return (
    <Box background='#F6F7F8' >
         <Flex flexDirection='column' justifyContent='center' alignItems='center' >
-            <Box border='1px solid #d0d6db' w='30vw' borderRadius='0.375rem'p='20px' >
+            <Box border='1px solid #d0d6db' w='30vw' borderRadius='0.375rem'p='20px' width={["100%","50%" , "30%"]} >
                 <Box backgroundColor='#f2f5fc'>
-                    <Flex m='0 4rem' flexDirection='column' justifyContent='center' alignItems='center'>
+                    <Flex m='0 2rem' flexDirection='column' justifyContent='center' alignItems='center'>
                         <Image src={logo} w={150} />
-                        <Text fontSize='3xl'> Log into Ttracker</Text>
+                        <Text w='100%'fontSize='3xl' textAlign='center'> Log into Ttracker</Text>
                     </Flex>
                 </Box>
                 <Box>
