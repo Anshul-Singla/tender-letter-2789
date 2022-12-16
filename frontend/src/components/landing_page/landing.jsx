@@ -4,19 +4,21 @@ import React from 'react';
 import Navbar from '../navbar/Navbar';
 import {ArrowForwardIcon } from '@chakra-ui/icons';
 import style from './Landing.css'
+import Footer from '../pricing_page/Footer';
 
 const Landing = () => {
   return (
     <Box>
         {/* <Heading>LIFE IS AWESOME...</Heading> */}
         <Navbar/>
-        <Box className='middleName'>
+        <Box className='middleName' margin='50px 0'>
            <FirstPart/>
            <SecondPart/>
            <ThirdPart/>
            <FourtPart/>
            <FifthPart/>
            <SixthPart/>
+           <Footer/>
         </Box>
         {/* <Box>LANDING PAGE</Box> */}
         {/* <Box>Footer</Box> */}
@@ -280,7 +282,7 @@ const SixthPart = () => {
     }
   ]
   return (
-    <Box>
+    <Box m='60px 0'>
       <Heading size='2xl' textAlign='center' fontWeight='600' margin='5rem 0 30px 0'>Why choose TMetric?</Heading>
       <Flex width='90vw' m='0 auto' gap='2rem'>
         {

@@ -3,6 +3,7 @@ const dbconnect = require("./config/db.connect");
 const cors = require("cors");
 const projectRoute = require("./features/projects/routes");
 const trackerRoute = require("./features/Time_Tracker/time.routes");
+const usersRoute = require("./features/user/users.router");
 //-----------------------------------------------------------
 let PORT = 8080;
 //------------------------------------------------------------
@@ -18,6 +19,9 @@ app.get("/", (req, res) => {
 //:::::::::::project Route:::::::::::::::::::
 app.use("/tracker",trackerRoute)
 app.use("/project", projectRoute);
+//:::::::::::Users Route:::::::::::::::::::
+app.use("/user",usersRoute)
+
 
 //-------------------------------------------------------------
 
