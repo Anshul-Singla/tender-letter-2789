@@ -1,10 +1,11 @@
 import React from "react";
-import Tracker from "../components/Time_Tracker/Tracker";
+import Tracker from "../components/Time_Tracker/Tracker"
 import { Route, Routes } from "react-router-dom";
 import Landing from "../components/landing_page/landing";
 import { Projects } from '../components/projects/projects';
 import { Inputform } from '../components/projects/form';
 import Pricing from "../components/pricing_page/Pricing";
+// import Time from "../components/Time_Tracker/Time";
 
 
 const AllRoutes = () => {
@@ -17,6 +18,8 @@ const AllRoutes = () => {
          <Route path="/auth/projects/new" element={<Inputform />}/>
 
       <Route path="/pricing" element={<Pricing />} />
+
+      {/* <Route path='/timer' element={<Time/>}/> */}
 
     </Routes>
   );

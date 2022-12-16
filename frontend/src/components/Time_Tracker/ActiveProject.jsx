@@ -2,9 +2,11 @@ import { Box, Checkbox, Flex, Text } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import { FaPlay, FaStop } from 'react-icons/fa'
 import { FcFolder } from 'react-icons/fc'
+import { GrEdit } from 'react-icons/gr'
 import { MdOutlineDeleteOutline } from "react-icons/md"
 
-const ActiveProject = ({ props, setPlay, play, DeleteProject }) => {
+const ActiveProject = ({ props, setPlay, play, DeleteProject,toogle,UpdateProject }) => {
+    // console.log(props)
     const [count, setCount] = useState(0)
     const [is, setIs] = useState(false)
     const timerId = useRef(null)
@@ -27,15 +29,15 @@ const ActiveProject = ({ props, setPlay, play, DeleteProject }) => {
 
 
     return (
-        <Box key={props.id} border={"0.2px solid #d8dde1"}    borderRadius={".5rem"} >
+        <Box key={props._id} border={"0.2px solid #d8dde1"}    borderRadius={".5rem"} >
             <Flex  p={".5rem"} justifyContent="space-between" >
                 <Flex gap="1rem">
-                    <Checkbox ></Checkbox>
-                    <Text>{props.description}</Text>
+                    <Checkbox onChange={() => toogle(props._id)} ></Checkbox>
+                    <Text>{props.desc}</Text>
                 </Flex>
                 <Flex gap="2rem" >
                     <Flex gap="10px"> <FcFolder size="1.5rem" /><Text>{props.project}</Text></Flex>
-                    <Flex>{props.start} - {props.end}</Flex>
+                    <Flex>{props.start_time} - {props.end_time}</Flex>
 
                     <Text>{count} : min </Text>
                     {!is ?
@@ -43,7 +45,8 @@ const ActiveProject = ({ props, setPlay, play, DeleteProject }) => {
                         :
                         <FaStop color='gray' onClick={Pause} />
                     }
-                    <Text ml="20px" cursor={"pointer"}><MdOutlineDeleteOutline onClick={() => DeleteProject(props.id)} size={"20px"} /></Text>
+                     <Text ml="20px" cursor={"pointer"}><GrEdit onClick={() => UpdateProject(props._id)} size={"20px"} /></Text>
+                    <Text ml="20px" cursor={"pointer"}><MdOutlineDeleteOutline onClick={() => DeleteProject(props._id)} size={"20px"} /></Text>
                 </Flex>
             </Flex>
 

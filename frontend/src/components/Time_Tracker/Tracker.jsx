@@ -20,56 +20,131 @@ import {
     useDisclosure,
     Fade,
     Divider,
+    useToast,
 } from "@chakra-ui/react";
-import Calendar from "react-calendar";
-import Timeline from "react-timeline-bar";
+
+
 import "react-timeline-bar/dist/index.css";
 import TimePicker from "react-time-picker";
-import { v4 as uuidv4 } from "uuid";
 import ActiveProject from "./ActiveProject";
 import axios from "axios";
 
 const Tracker = () => {
+    const toast = useToast()
     const { isOpen, onOpen, onClose } = useDisclosure();
-
     const [play, setPlay] = useState(0);
     const [uptime, setUptime] = useState([0, 0]);
     let [value, onChange] = useState("8:00");
     let [value1, onChange1] = useState("9:00");
     const [shour, setshour] = useState([]);
     const [ehour, setehour] = useState([]);
-    // console.log(value)
+
     const [data, setData] = useState([]);
     const [form, setForm] = useState({
-        id: "",
-        description: "",
+        desc: "",
         project: "",
-        start: shour,
-        end: ehour,
+        tag: "",
+        start_time: shour,
+        end_time: ehour,
     });
-    // console.log(form)
-
-    // // <<<<<<<<<<< GET DATA >>>>>>>>>>
-    // const GetData = async () => {
-    //     return (
-    //         await axios.get("http://localhost:8080/tracker/show")
-    //         .then((res) => {
-    //          console.log(res.data.time)
-    //         })
-    //     )
-    // }
-
-    // useEffect(() => {
-    //     GetData()
-    // }, [])
+    console.log("data", data)
 
 
-    // delete the task
-    const DeleteProject = (id) => {
-        let newData = data.filter((e) => e.id !== id);
-        setData(newData);
-        rset();
+    // <<<<<<<<<<< GET DATA >>>>>>>>>>
+    const GetData = async () => {
+        return await axios.get("http://localhost:8080/tracker/show")
+            .then((res) => {
+                //  console.log("res",res.data)
+                setData(res.data)
+            })
+    }
+    // <<<<<<<<<<< USE EFFECT >>>>>>>>>>
+    useEffect(() => {
+        GetData()
+    }, [])
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setForm({
+            ...form,
+            [name]: value
+        })
+    }
+    // <<<<<<<<<<< FORM SUBMIT >>>>>>>>>>
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await axios.post("http://localhost:8080/tracker/new", form)
+        onClose()
+        GetData()
+        set();
+
+            toast({
+              title: 'Timer created.',
+              description: "We've created Timer for you.",
+              status: 'success',
+              duration: 1500,
+              isClosable: true,
+              position:"top"
+            })
+          
+
+    }
+    // <<<<<<<<<<< DELETE DATA >>>>>>>>>>
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8080/tracker/delete/${id}`);
+            setData(
+                data.filter((el) => {
+                    return el._id !== id;
+                })
+            );
+            rset()
+            toast({
+                title: `Deleted Successfully`,
+                description: "We've Deleted Timer for you.",
+                status: 'success',
+                duration: 1500,
+                isClosable: true,
+                position:"top"
+              })
+           
+        } catch (err) {
+            console.log(err.message);
+        }
     };
+
+    //::::::::::::::: TOOGLE DATA :::::::::::::::
+    let toogle = async (id,done) => {
+        try {
+            await axios
+                .post(`http://localhost:8080/tracker/update/${id}`, {
+                    done: !done,
+                })
+                .then((res) => {
+                    console.log("res", res)
+                    GetData()
+                });
+        } catch (err) {
+            console.log(err.message);
+        }
+        console.log(data);
+    };
+    //::::::::::::::: UPDATE DATA ::::::::::::::::
+
+      const handleUpdate = async (id) => {
+        let update = prompt(`Enter New Description For Task ID : ${id}`);
+        console.log(update);
+        try {
+          await axios
+            .post(`http://localhost:8080/tracker/update/${id}`, {
+              desc: update,
+            })
+            .then((res) => GetData());
+        } catch (err) {
+          console.log(err.message);
+        }
+      };
+
 
     const rset = () => {
         let h = ehour[0] - shour[0];
@@ -78,28 +153,12 @@ const Tracker = () => {
         setUptime([temp[0] - h, temp[1] - m]);
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        // console.log(value)
-        setForm({
-            ...form,
-            [name]: value,
-            id: uuidv4(),
-        });
-    };
 
     const set = () => {
         let h = ehour[0] - shour[0];
         let m = ehour[1] - shour[1];
         let temp = [...uptime];
         setUptime([temp[0] + h, temp[1] + m]);
-    };
-
-    const Addproject = (e) => {
-        e.preventDefault();
-        setData([...data, form]);
-        set();
-        onClose();
     };
 
     useEffect(() => {
@@ -113,16 +172,17 @@ const Tracker = () => {
     }, [value1]);
 
 
+
+
     return (
         <Box
             display={"flex"}
             flexDirection={["column", "column", "column"]}
             gap={"1rem"}
-            // border={"1px solid grey"}
             w={"auto"}
         >
 
-            {/* Top-part */}
+            {/* <<<<<<<<<<< TOP PART >>>>>>>>>> */}
             <Center >
                 <Box
                     display={"flex"}
@@ -154,7 +214,7 @@ const Tracker = () => {
             </Center>
 
 
-            {/* Middle-part */}
+            {/* <<<<<<<<<<< MIDDLE PART >>>>>>>>>> */}
             <Center>
                 <Box
                     border={"0.2px solid #d8dde1"}
@@ -173,6 +233,7 @@ const Tracker = () => {
                         <Box w={"fit-content"}>
                             <Text>Total</Text>
                             <Text fontSize="1.5rem">
+
                                 {Math.abs(uptime[0]) + "h" + " " + Math.abs(uptime[1]) + "m"}
                             </Text>
                         </Box>
@@ -187,11 +248,10 @@ const Tracker = () => {
 
                     <Image src={chart} alt="chart" />
                 </Box>
-                {/* <Timeline onSetNewTime={seconds => console.log(seconds)} /> */}
             </Center>
 
 
-            {/* Down-part */}
+            {/* <<<<<<<<<<< DOWN PART >>>>>>>>>> */}
             <Center>
                 <Box
                     display={"flex"}
@@ -218,27 +278,33 @@ const Tracker = () => {
                         </Flex>
                     </Box>
 
-                    {data.length === 0 ? (
-                        <Text overflow={"hidden"}>
-                            "No work time is recorded for this day."
-                        </Text>
-                    ) : (
-                        data.map((e) => {
-                            return (
-                                <ActiveProject
-                                    props={e}
-                                    key={e.id}
-                                    setPlay={setPlay}
-                                    play={play}
-                                    DeleteProject={DeleteProject}
-                                />
-                            );
-                        })
-                    )}
+                    {/* <<<<<<<< MAP THE DATA >>>>>>>>> */}
+                    {
+                        data.length === 0 ? (
+                            <Text overflow={"hidden"}>
+                                "No work time is recorded for this day."
+                            </Text>
+                        ) : (
+                            data.map((e) => {
+                                return (
+                                    <ActiveProject
+                                        props={e}
+                                        key={e._id}
+                                        setPlay={setPlay}
+                                        play={play}
+                                        DeleteProject={handleDelete}
+                                        toogle={toogle}
+                                        UpdateProject={handleUpdate}
+
+                                    />
+                                );
+                            })
+                        )
+                    }
                 </Box>
             </Center>
 
-            {/* <<<<<<<<<<< FORM >>>>>>>>> */}
+            {/* <<<<<<<<<<< FORM INPUT >>>>>>>>> */}
             <Center>
                 <form style={{ width: "80%", marginTop: "-1.5rem" }}>
                     <Fade in={isOpen}>
@@ -251,19 +317,33 @@ const Tracker = () => {
                             p={"1rem"}
                             pt="3rem"
                         >
-                            {/* First Flex*/}
 
                             <Flex mt={"-3%"} justifyContent="space-between">
+
                                 <Box w="50%">
                                     <Text textAlign={"left"}>Description</Text>
                                     <Input
                                         w="100%"
                                         h="30px"
-                                        name="description"
-                                        onChange={(e) => handleChange(e)}
+                                        name="desc"
+                                        value={form.desc}
+                                        onChange={handleChange}
                                         placeholder="Description"
                                     ></Input>
                                 </Box>
+
+                                {/* <Box w="55%">
+                                    <Text textAlign={"left"}>Start_time</Text>
+                                    <TimePicker name="start_time" onChange={handleChange} value={form.start_time} />
+                                <Input
+                                        name="start_time"
+                                        value={form.start_time}
+                                        onChange={handleChange}
+                                        placeholder="start_time"
+                                    />
+                                </Box> */}
+
+
                                 <Box>
                                     <Text textAlign={"left"}>Start Time</Text>
                                     <TimePicker onChange={onChange} value={value} />
@@ -271,7 +351,7 @@ const Tracker = () => {
                                 <Box>
                                     <Text textAlign={"left"}>End Time</Text>
                                     <TimePicker onChange={onChange1} value={value1} />
-                                    {/* <Clock setClock2={setClock2}/> */}
+
                                 </Box>
 
                                 <Box w="12%">
@@ -288,13 +368,14 @@ const Tracker = () => {
                                     <Text textAlign={"left"}>Add Project</Text>
                                     <Input
                                         name="project"
-                                        onChange={(e) => handleChange(e)}
+                                        value={form.project}
+                                        onChange={handleChange}
                                         placeholder="Add project"
                                     />
                                 </Box>
                                 <Box w="40%">
                                     <Text textAlign={"left"}>Add Tags</Text>
-                                    <Input placeholder="Add Tags" />
+                                    <Input placeholder="Add Tags" name="tag" value={form.tag} onChange={handleChange} />
                                 </Box>
                             </Flex>
 
@@ -303,7 +384,7 @@ const Tracker = () => {
                                 <Button
                                     bg="blue"
                                     type="submit"
-                                    onClick={Addproject}
+                                    onClick={handleSubmit}
                                     colorScheme="facebook"
                                 >
                                     Save
