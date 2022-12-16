@@ -1,0 +1,208 @@
+import React from "react";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Flex,
+  IconButton,
+  Image,
+  Link,
+  List,
+  ListIcon,
+  ListItem,
+  VStack,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { AiFillTags, AiOutlineLeft } from "react-icons/ai";
+import { Link as ReachLink } from "react-router-dom";
+import { BsFillGearFill, BsFolderFill, BsStopwatchFill } from "react-icons/bs";
+import { RiBillFill, RiTShirtAirFill, RiTeamFill } from "react-icons/ri";
+import { FaChartBar } from "react-icons/fa";
+import { GiPalmTree } from "react-icons/gi";
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { TbChartArcs, TbChecklist } from "react-icons/tb";
+import { CgProfile } from "react-icons/cg";
+import { GrIntegration } from "react-icons/gr";
+import { RxHamburgerMenu } from "react-icons/rx";
+
+const Sidebar = () => {
+  const { onOpen, onClose, isOpen } = useDisclosure();
+  return (
+    <Flex bg="#f6f7f8">
+      <IconButton
+        size="sm"
+        as={RxHamburgerMenu}
+        position="absolute"
+        top="5"
+        left="5"
+        zIndex={1}
+        padding={2}
+        onClick={onOpen}
+        display={isOpen ? "none" : "block"}
+      />
+
+      <Box
+        zIndex={1}
+        h="100vh"
+        width={["100%", "50%", "40%", "30%"]}
+        display={isOpen ? "flex" : "none"}
+        p={4}
+      >
+        <VStack align="start">
+          <Flex gap={4}>
+            <IconButton
+              size="sm"
+              padding={2}
+              icon={<AiOutlineLeft />}
+              onClick={onClose}
+            />
+            <Image src="https://app.tmetric.com/images/tmetric_logo_and_text.svg" />
+          </Flex>
+
+          <List color="black" fontWeight="400" fontSize="20px">
+            <ListItem mt={2}>
+              <Link as={ReachLink} to="">
+                <ListIcon as={BsStopwatchFill} color="gray" mr={4} />
+                Time
+              </Link>
+            </ListItem>
+            <ListItem mt={2}>
+              <Link as={ReachLink} to="">
+                {" "}
+                <ListIcon as={RiBillFill} color="gray" mr={4} />
+                My Work
+              </Link>
+            </ListItem>
+            <ListItem mt={2}>
+              <Link as={ReachLink} to="">
+                {" "}
+                <ListIcon as={BsFolderFill} color="gray" mr={3} /> Tasks
+              </Link>
+            </ListItem>
+            <ListItem mt={2}>
+              <Link as={ReachLink} to="">
+                {" "}
+                <ListIcon as={RiTeamFill} color="gray" mr={3} /> Team
+              </Link>
+            </ListItem>
+          </List>
+          <Accordion allowToggle>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left" m={0} p={0}>
+                    ANALYZE
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <List color="black" fontWeight="400" fontSize="16px">
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to="">
+                      <ListIcon as={FaChartBar} />
+                      Reports
+                    </Link>
+                  </ListItem>
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to="">
+                      <ListIcon as={TbChartArcs} />
+                      Activity
+                    </Link>
+                  </ListItem>
+                </List>
+              </AccordionPanel>
+            </AccordionItem>
+
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left" m={0} p={0}>
+                    MANAGE
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <List color="black" fontWeight="400" fontSize="16px">
+                  <ListItem mt={2}>
+                    <Link as={ReachLink}>
+                      <ListIcon as={BsFolderFill} color="gray" /> Project
+                    </Link>
+                  </ListItem>
+
+                  <ListItem mt={2}>
+                    <Link as={ReachLink}>
+                      <ListIcon as={HiOutlineBuildingOffice2} color="gray" />{" "}
+                      Clients
+                    </Link>
+                  </ListItem>
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to=""></Link>
+                    <ListIcon as={RiBillFill} color="gray" />
+                    Invoices
+                  </ListItem>
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to="">
+                      <ListIcon as={GiPalmTree} color="gray" /> Time Off
+                    </Link>
+                  </ListItem>
+                </List>
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left" m={0} p={0}>
+                    WORKSPACE
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <List color="black" fontWeight="400" fontSize="16px">
+                  <ListItem mt={2}>
+                    <Link as={ReachLink}>
+                      <ListIcon as={BsFillGearFill} color="gray" /> Settings
+                    </Link>
+                  </ListItem>
+
+                  <ListItem mt={2}>
+                    <Link as={ReachLink}>
+                      <ListIcon as={CgProfile} color="gray" /> Members
+                    </Link>
+                  </ListItem>
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to=""></Link>
+                    <ListIcon as={RiTShirtAirFill} color="gray" />
+                    Teams
+                  </ListItem>
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to="">
+                      <ListIcon as={AiFillTags} color="gray" /> Tags
+                    </Link>
+                  </ListItem>
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to="">
+                      <ListIcon as={GrIntegration} color="gray" /> Integration
+                    </Link>
+                  </ListItem>
+                  <ListItem mt={2}>
+                    <Link as={ReachLink} to="">
+                      <ListIcon as={TbChecklist} color="gray" /> Subscription
+                    </Link>
+                  </ListItem>
+                </List>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </VStack>
+      </Box>
+    </Flex>
+  );
+};
+
+export default Sidebar;
