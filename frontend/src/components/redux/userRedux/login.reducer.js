@@ -36,11 +36,13 @@ export const LoginReducer = (state = loginInitial, { type, payload }) => {
     }
     case user_login_success: {
       localStorage.setItem("token", payload.Token);
+      console.log('payload:', payload)
       return {
         ...state,
         loading: false,
         error: false,
         data: {
+          ...state.data ,
           Token: payload.Token,
           message: payload.message,
           // gAuth: "",

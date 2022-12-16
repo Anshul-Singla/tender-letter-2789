@@ -16,7 +16,7 @@ export const userLogin = (formData) => async (dispatch) => {
 
   try {
     let res = await axios.post("http://localhost:8080/user/login", formData);
-    console.log(res);
+    console.log("res:",res);
     dispatch({ type: user_login_success, payload: res.data });
   } catch (e) {
     console.log(e);

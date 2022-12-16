@@ -14,6 +14,7 @@ export const signupInitialState = {
 };
 
 export const signupReducer = (state = signupInitialState, { type, payload }) => {
+
   switch (type) {
     case user_signup_loading: {
       return {
@@ -30,11 +31,14 @@ export const signupReducer = (state = signupInitialState, { type, payload }) => 
       };
     }
     case user_signup_success: {
+      console.log('payload:', payload)
       return {
         ...state,
         loading: false,
         error: false,
-        data: { payload },
+        data: {
+          ...state.data , message:payload.message
+        },
       };
     }
     default:
