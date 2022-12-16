@@ -1,5 +1,5 @@
 import { Button, Input ,Box } from '@chakra-ui/react'
-import { Grid, GridItem } from '@chakra-ui/react'
+
 import { useDisclosure } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import "./Form.css"
@@ -28,7 +28,7 @@ import axios from 'axios';
     const finalRef = React.useRef(null)
 
     const [form,setForm]=useState({});
-
+       
 
    
     const [task,setTask]=useState([])
@@ -43,10 +43,10 @@ const handleChange=(e)=>{
 }
 
 const hanldeSubmit=(e)=>{
-axios.post("http://localhost:8080/task",form)
+axios.post("http://localhost:8080",form)
 setTask([...task,form])
 onClose()
-refresh("refresh")
+refresh(Date.now())
 }
 
 return (
@@ -69,6 +69,7 @@ return (
                 ref={initialRef} 
                 placeholder='Write a task name ' 
                 name="taskname"
+                isRequired
                 value={Taskame} 
                 onInput={handleChange}/>
               </FormControl>

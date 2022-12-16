@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Select,Box, Button, Input, Text} from '@chakra-ui/react';
+import { Select,Box, Button, Input, Text,Flex,Spacer} from '@chakra-ui/react';
 
 import {AiFillCheckCircle} from "react-icons/ai"
 import SelectTag from './component/selectTag'
 import InitialFocus from "./Form"
 import axios from 'axios'
-
+import { useDisclosure } from '@chakra-ui/react';
 import "./Task.css"
 import TaskDetail from './TaskDetail';
-
-
+import {MdDelete} from "react-icons/md";
+import {FaEdit} from "react-icons/fa";
 
 
 export default function Task() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+   const [data,setData]=useState([])
+ const [details,setdetails]=useState({})
+  const [recall,setRefresh]=useState("")
   const breakpoints = {
     sm: '30em',
     md: '48em',
@@ -20,31 +24,57 @@ export default function Task() {
     xl: '80em',
     '2xl': '96em',
   }
- const [data,setData]=useState([])
 
- const [recall,setRefresh]=useState("")
+const res=false
+
+
 const refresh=(refresh)=>{
 setRefresh(refresh)
 }
-let id=1
-useEffect(async()=>{
-await axios.get(`http://localhost:8080/task/1`)
-.then((res)=>console.log(res.data))
 
+useEffect(()=>{
+ axios.get(`http://localhost:8080`)
+.then((res)=>setData(res.data))
+},[recall])
 
-},[])
-
+//================== find details of a single Task ======================
 const handleDetails=(id)=>{
-  console.log(data)
-// data.map((e)=>((id==e.id)console.log(e))
-  
-
-
-  
+  axios.get(`http://localhost:8080/${id}`)
+  .then((res)=>{setdetails(res.data);onOpen()})
+ res=true
+  // TaskDetail(details)
 }
 
+//===================== Delete a Task ==============================
+
+const handleDelete=(id)=>{
+  axios.delete(`http://localhost:8080/${id}`)
+  alert("Task Deleted Successfully")
+  setRefresh(Date.now())
+}
+
+//======================= Edit Task =================================
+const handleEdit=async(id)=>{
+  let update=prompt(`Enter New Task Name`)
+
+  try{
+    await axios.post(`http://localhost:8080/${id}`,{
+      taskname:update
+    })
+  }
+  catch(e){
+    console.log(e.message)
+  }
+  setRefresh(Date.now())
+}
+
+
+
+
+
+
 return (
-    <Box style={{"display":"flex"}}>
+      <Box style={{"display":"flex"}}>
       <Box className="sidebar"></Box>
       <Box style={{"border":"2px solid red","width":"80%","padding":"0px 160px"} }>
       <Box style={{"fontSize":"27px","fontWeight":"500"}}>My Tasks |</Box>
@@ -78,17 +108,23 @@ return (
          {
           data.map((e)=>(
            
-            <>
-            <div className='taskdiv'onClick={()=>TaskDetail(e.id,data)} >
-           <AiFillCheckCircle className='AiFillCheckCircle'/>
-            <Text fontSize='md'>{e.taskname}</Text>
-            </div>
-           <hr></hr>
-            </>
-       
-        
+            <Box className='boxx'>
+              <Flex>
+              <Box><AiFillCheckCircle className='AiFillCheckCircle'/></Box>
             
-          ))
+            <Box className='taskdiv'onClick={()=>{handleDetails(e._id)}} >
+       
+             <TaskDetail details={details} isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+          
+             <Text className='text'>{e.taskname}</Text>
+            </Box>
+            <Spacer />
+            <FaEdit size={"38px"} className="FaEdit" onClick={()=>handleEdit(e._id)}/>
+            <MdDelete size={"40px"} className="MdDelete " onClick={()=>handleDelete(e._id)}/>
+            </Flex>
+           <hr></hr>
+            </Box>
+       ))
          }
 
         </Box>

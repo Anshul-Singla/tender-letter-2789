@@ -1,17 +1,26 @@
 .AiFillCheckCircle{
     color:gray;
-    font-size:25px;
+    font-size:30px;
    font-weight:500
 }
 .AiFillCheckCircle:hover{
 color:green;
 
 }
-
+.boxx {
+/* background-color: bisque; */
+margin-top: 10px;
+align-items: center;
+}
+.boxx:hover{
+    background-color: bisque;
+}
 .taskdiv{
-    display:flex;
+    /* display:flex; */
     gap: 35px;
    align-items: center;
+   margin-left: 15px;
+   width: 70%;
  
   /* margin-left: 10px; */
   /* border: 1px solid red; */
@@ -19,7 +28,7 @@ color:green;
   
 }
 .taskdiv:hover{
-    background-color:#f1f4f5;
+    background-color:bisque;
 }
 
 
@@ -27,5 +36,19 @@ color:green;
     border:5px solid gray;
     width:20%;
     height:auto
+}
+.MdDelete:hover {
+    color: red;
+   
+}
+.FaEdit:hover{
+    color: rgb(109, 234, 13);
+
+}
+.text{
+    font-size: large;
+    font-weight: 500;
+    font-style:oblique;
+    
 }
 
