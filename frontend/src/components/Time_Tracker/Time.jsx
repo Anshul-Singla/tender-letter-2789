@@ -8,20 +8,21 @@ const Time = () => {
     const [input, setInput] = useState({
         desc: "",
         tag: "",
-        start_time:"",
+        start_time: "",
         end_time: ""
     })
 
 
     // <<<<<<<<<<< GET DATA >>>>>>>>>>
-    const GetData = async () => {
-        return (
-            await axios.get("http://localhost:8080/tracker/show")
-                .then((res) => {
-                    // console.log(res.data.time)
-                })
-        )
-    }
+    // const GetData = async () => {
+    //     return (
+    //         await axios.get("http://localhost:8080/tracker/show")
+    //             .then((res) => {
+    //                 setData(res.data.time)
+    //                 console.log(res.data.time)
+    //             })
+    //     )
+    // }
 
     useEffect(() => {
         GetData()
@@ -29,7 +30,6 @@ const Time = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target
-
         setInput({
             ...input,
             [name]: value
@@ -38,16 +38,11 @@ const Time = () => {
     // console.log("input", input)
 
     // handlesubmit
-    const handleSubmit = async(e) => {
-        e.preventDefault()
-        setData([...data, input])
-        
-      await axios.post("http://localhost:8080/tracker/new", data)
-        .then((res)=>{
-            console.log("res",res)
-        })
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     return await axios.post("http://localhost:8080/tracker/new", input)
 
-    }
+    // }
     // console.log("data", data)
 
 
@@ -61,6 +56,17 @@ const Time = () => {
 
                 <Button type='submit'>Submit</Button>
             </form>
+
+            {
+                data.map((el) => {
+                    return (
+                        <div key={el._id}>
+                            <li>{el.desc}</li>
+                        </div>
+                    )
+                })
+            }
+
         </div>
     )
 }
