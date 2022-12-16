@@ -11,7 +11,7 @@ const Landing = () => {
     <Box>
         {/* <Heading>LIFE IS AWESOME...</Heading> */}
         <Navbar/>
-        <Box className='middleName'>
+        <Box className='middleName' margin='50px 0'>
            <FirstPart/>
            <SecondPart/>
            <ThirdPart/>
@@ -282,7 +282,7 @@ const SixthPart = () => {
     }
   ]
   return (
-    <Box>
+    <Box m='60px 0'>
       <Heading size='2xl' textAlign='center' fontWeight='600' margin='5rem 0 30px 0'>Why choose TMetric?</Heading>
       <Flex width='90vw' m='0 auto' gap='2rem'>
         {

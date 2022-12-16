@@ -11,11 +11,12 @@ const Navbar = () => {
     <Box 
     borderBottom=".5px solid grey"
     padding='15px 0'
-    position='relative'
+    position='fixed'
     top={0}
     left={0}
     w="99vw"
     backgroundColor="#fff"
+    zIndex='9999'
      >
         <Flex justifyContent='space-between' alignItems='center' w="90%" margin='0 auto'> 
             <Flex gap='1rem' justifyContent='center' alignItems='center' > 
