@@ -4,6 +4,7 @@ const cors = require("cors");
 const projectRoute = require("./features/projects/routes");
 const trackerRoute = require("./features/Time_Tracker/time.routes");
 const usersRoute = require("./features/user/users.router");
+const taskRouter= require("./features/Task/task.router")
 //-----------------------------------------------------------
 let PORT = 8080;
 //------------------------------------------------------------
@@ -15,14 +16,14 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("LIFE IS AWESOME...");
 });
-
+ 
 //:::::::::::project Route:::::::::::::::::::
 app.use("/tracker",trackerRoute)
 app.use("/project", projectRoute);
 //:::::::::::Users Route:::::::::::::::::::
 app.use("/user",usersRoute)
 //:::::::::::Tasks Route:::::::::::::::::::
-// app.use("/task",usersRoute)
+app.use("/task",taskRouter)
 
 
 

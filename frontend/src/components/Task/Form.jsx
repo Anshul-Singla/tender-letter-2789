@@ -52,7 +52,7 @@ const hanldeSubmit=(e)=>{
     alert("plz fill all the details")
     
     }
-axios.post("http://localhost:8080",form)
+axios.post("http://localhost:8080/task",form)
 // setTask([...task,form])
 onClose()
 refresh(Date.now())

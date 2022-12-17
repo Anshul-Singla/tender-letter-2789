@@ -10,6 +10,7 @@ import "./Task.css"
 import TaskDetail from './TaskDetail';
 import {MdDelete} from "react-icons/md";
 import {FaEdit} from "react-icons/fa";
+import Sidebar from '../Sidebar/Sidebar';
 
 
 export default function Task() {
@@ -17,13 +18,7 @@ export default function Task() {
    const [data,setData]=useState([])
  const [details,setdetails]=useState({})
   const [recall,setRefresh]=useState()
-  const breakpoints = {
-    sm: '30em',
-    md: '48em',
-    lg: '62em',
-    xl: '80em',
-    '2xl': '96em',
-  }
+ 
 
 
 
@@ -33,13 +28,13 @@ setRefresh(refresh)
 }
 
 useEffect(()=>{
- axios.get(`http://localhost:8080`)
+ axios.get(`http://localhost:8080/task`)
 .then((res)=>setData(res.data))
 },[recall])
 
 //================== find details of a single Task ======================
 const handleDetails=(id)=>{
-  axios.get(`http://localhost:8080/${id}`)
+  axios.get(`http://localhost:8080/task/${id}`)
   .then((res)=>{setdetails(res.data);onOpen()})
 
 }
@@ -48,7 +43,7 @@ const handleDetails=(id)=>{
 //===================== Delete a Task ==============================
 
 const handleDelete=(id)=>{
-  axios.delete(`http://localhost:8080/${id}`)
+  axios.delete(`http://localhost:8080/task/${id}`)
   alert("Task Deleted Successfully")
   setRefresh(Date.now())
 }
@@ -58,7 +53,7 @@ const handleEdit=async(id)=>{
   let update=prompt(`Enter New Task Name`)
 
   try{
-    await axios.patch(`http://localhost:8080/${id}`,{
+    await axios.patch(`http://localhost:8080/task/${id}`,{
       taskname:update
     })
   }
@@ -75,11 +70,13 @@ const handleEdit=async(id)=>{
 
 return (
       <Box style={{"display":"flex"}}>
-      <Box className="sidebar"></Box>
+      <Box className="sidebar">
+        <Sidebar/>
+      </Box>
       <Box style={{"width":"80%","padding":"0px 160px"} }>
       <Box style={{"fontSize":"27px","fontWeight":"500"}}  w={[300,400,800,900]} className="text" >My Tasks |</Box>
       <br/>
-      <Box style={{"display":"flex","flexWrap":"wrap",'gap':"5px"}}w={[300,400,800,900]} >
+      <Box style={{"display":"flex","flexWrap":"wrap",'gap':"5px" ,"border":"2px red solid"}}w={["100%"]} >
      
       <SelectTag text={"Client : All"} />
       <SelectTag text={"Project: All"}/>
@@ -89,8 +86,13 @@ return (
       </Box>
 <br/>
 
-      <Box style={{"display":"flex",'gap':"5px","border":"1px solid gray","w":"100%","borderRadius":"5px","padding":"10px"}} w={[300,400,680,900,1200]}>
-       <InitialFocus refresh={refresh}/>
+      <Box style={{"display":"flex",'gap':"5px","border":"1px solid gray","w":"100%","borderRadius":"5px","padding":"10px"}} w={["90%"]}>
+       
+      {/* //============================ form =========================  */}
+
+      
+   <InitialFocus refresh={refresh}/>
+
       <Select placeholder="Sort : Project" backgroundColor={"gray.100"} size='120px' textAlign="center" w="140px" h="35px" borderColor="gray" borderRadius="7px" _hover={{backgroundColor:"#e2e6eb"}}> 
       <option value='Project'>Project</option>
       <option value='Estimate'>Estimate</option>
@@ -104,9 +106,9 @@ return (
        
         </Box>
        
-        <Box clssname="box" style={{'gap':"1px","border":"2px solid green","borderRadius":"5px","padding":"10px",}} h="750" overflow={"auto"} w={[300,400,680,900,1000,1200]}>
+        <Box clssname="box" style={{'gap':"1px","border":"2px solid green","borderRadius":"5px","padding":"10px",}} h="750" overflow={"auto"} w={["100%"]}>
          {
-          data?.map((e)=>(
+          data && data.map((e)=>(
            
             <Box className='boxx'>
               <Flex>

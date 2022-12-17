@@ -33,8 +33,9 @@ align-items: center;
 
 
 .sidebar{
-    border:5px solid gray;
-    width:20%;
+    /* border:5px solid ; */
+    background-color:#f0e5d8;
+    width:15%;
     height:auto
 }
 .MdDelete:hover {
