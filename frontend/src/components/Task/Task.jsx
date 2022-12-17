@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Select,Box, Button, Input, Text} from '@chakra-ui/react';
+import { Select,Box, Button, Input, Text,Flex,Spacer} from '@chakra-ui/react';
 
 import {AiFillCheckCircle} from "react-icons/ai"
-import SelectTag from './component/selectTag'
+import SelectTag from './select/selectTag'
 import InitialFocus from "./Form"
 import axios from 'axios'
-
+import { useDisclosure } from '@chakra-ui/react';
 import "./Task.css"
 import TaskDetail from './TaskDetail';
-
-
+import {MdDelete} from "react-icons/md";
+import {FaEdit} from "react-icons/fa";
 
 
 export default function Task() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+   const [data,setData]=useState([])
+ const [details,setdetails]=useState({})
+  const [recall,setRefresh]=useState()
   const breakpoints = {
     sm: '30em',
     md: '48em',
@@ -20,36 +24,62 @@ export default function Task() {
     xl: '80em',
     '2xl': '96em',
   }
- const [data,setData]=useState([])
 
- const [recall,setRefresh]=useState("")
+
+
+
 const refresh=(refresh)=>{
 setRefresh(refresh)
 }
-let id=1
-useEffect(async()=>{
-await axios.get(`http://localhost:8080/task/1`)
-.then((res)=>console.log(res.data))
 
+useEffect(()=>{
+ axios.get(`http://localhost:8080`)
+.then((res)=>setData(res.data))
+},[recall])
 
-},[])
-
+//================== find details of a single Task ======================
 const handleDetails=(id)=>{
-  console.log(data)
-// data.map((e)=>((id==e.id)console.log(e))
-  
+  axios.get(`http://localhost:8080/${id}`)
+  .then((res)=>{setdetails(res.data);onOpen()})
 
-
-  
 }
 
+
+//===================== Delete a Task ==============================
+
+const handleDelete=(id)=>{
+  axios.delete(`http://localhost:8080/${id}`)
+  alert("Task Deleted Successfully")
+  setRefresh(Date.now())
+}
+
+//======================= Edit Task =================================
+const handleEdit=async(id)=>{
+  let update=prompt(`Enter New Task Name`)
+
+  try{
+    await axios.patch(`http://localhost:8080/${id}`,{
+      taskname:update
+    })
+  }
+  catch(e){
+    console.log(e.message)
+  }
+  setRefresh(Date.now())
+}
+
+
+
+
+
+
 return (
-    <Box style={{"display":"flex"}}>
+      <Box style={{"display":"flex"}}>
       <Box className="sidebar"></Box>
-      <Box style={{"border":"2px solid red","width":"80%","padding":"0px 160px"} }>
-      <Box style={{"fontSize":"27px","fontWeight":"500"}}>My Tasks |</Box>
+      <Box style={{"width":"80%","padding":"0px 160px"} }>
+      <Box style={{"fontSize":"27px","fontWeight":"500"}}  w={[300,400,800,900]} className="text" >My Tasks |</Box>
       <br/>
-      <Box style={{"display":"flex","flexWrap":"wrap",'gap':"5px"}}w={[300,400,800,900]} display={["flex","grid","flex"]} >
+      <Box style={{"display":"flex","flexWrap":"wrap",'gap':"5px"}}w={[300,400,800,900]} >
      
       <SelectTag text={"Client : All"} />
       <SelectTag text={"Project: All"}/>
@@ -59,7 +89,7 @@ return (
       </Box>
 <br/>
 
-      <Box style={{"display":"flex",'gap':"5px","border":"1px solid gray","w":"100%","borderRadius":"5px","padding":"10px"}} >
+      <Box style={{"display":"flex",'gap':"5px","border":"1px solid gray","w":"100%","borderRadius":"5px","padding":"10px"}} w={[300,400,680,900,1200]}>
        <InitialFocus refresh={refresh}/>
       <Select placeholder="Sort : Project" backgroundColor={"gray.100"} size='120px' textAlign="center" w="140px" h="35px" borderColor="gray" borderRadius="7px" _hover={{backgroundColor:"#e2e6eb"}}> 
       <option value='Project'>Project</option>
@@ -73,22 +103,28 @@ return (
         <Input w="250px" placeholder='Search Here ' marginLeft={"50%"} h="35px"></Input>
        
         </Box>
-        
-        <Box style={{'gap':"1px","border":"1px solid green","w":"100%","borderRadius":"5px","padding":"10px",}} h="750" overflow={"auto"} w={[300,400,800,900,1210]}>
+       
+        <Box clssname="box" style={{'gap':"1px","border":"2px solid green","borderRadius":"5px","padding":"10px",}} h="750" overflow={"auto"} w={[300,400,680,900,1000,1200]}>
          {
           data.map((e)=>(
            
-            <>
-            <div className='taskdiv'onClick={()=>TaskDetail(e.id,data)} >
-           <AiFillCheckCircle className='AiFillCheckCircle'/>
-            <Text fontSize='md'>{e.taskname}</Text>
-            </div>
-           <hr></hr>
-            </>
-       
-        
+            <Box className='boxx'>
+              <Flex>
+              <Box><AiFillCheckCircle className='AiFillCheckCircle' /></Box>
             
-          ))
+            <Box className='taskdiv'onClick={()=>{handleDetails(e._id)}} >
+       
+             <TaskDetail details={details} isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+          
+             <Text className='text'>{e.taskname}</Text>
+            </Box>
+            <Spacer />
+            <FaEdit size={"38px"} className="FaEdit" onClick={()=>handleEdit(e._id)}/>
+            <MdDelete size={"40px"} className="MdDelete " onClick={()=>handleDelete(e._id)}/>
+            </Flex>
+           <hr></hr>
+            </Box>
+       ))
          }
 
         </Box>
