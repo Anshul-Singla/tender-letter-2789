@@ -82,7 +82,7 @@ const Sidebar = () => {
               </Link>
             </ListItem>
             <ListItem mt={2}>
-              <Link as={ReachLink} to="">
+              <Link as={ReachLink} to="/auth/tasks">
                 {" "}
                 <ListIcon as={BsFolderFill} color="gray" mr={3} /> Tasks
               </Link>

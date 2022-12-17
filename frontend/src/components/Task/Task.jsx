@@ -106,7 +106,7 @@ return (
        
         <Box clssname="box" style={{'gap':"1px","border":"2px solid green","borderRadius":"5px","padding":"10px",}} h="750" overflow={"auto"} w={[300,400,680,900,1000,1200]}>
          {
-          data.map((e)=>(
+          data?.map((e)=>(
            
             <Box className='boxx'>
               <Flex>

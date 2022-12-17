@@ -8,6 +8,7 @@ import Pricing from "../components/pricing_page/Pricing";
 import Login from "../components/login/Login";
 import Signup from "../components/signup/Signup";
 import Authprovider from "../components/Private/Authprovider";
+import Task from '../components/Task/Task'
 // import Time from "../components/Time_Tracker/Time";
 
 
@@ -35,6 +36,11 @@ const AllRoutes = () => {
         }/>
 
       <Route path="/pricing" element={<Pricing />} />
+      <Route path='/auth/tasks' element={
+        <Authprovider>
+          <Task/>
+        </Authprovider>
+      } />
 
       {/* <Route path='/timer' element={<Time/>}/> */}
 
