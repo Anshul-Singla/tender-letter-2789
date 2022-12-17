@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../Sidebar/Sidebar";
 
 //:::::::::::::: MAIN FUNCTION ::::::::::::::::::
 
@@ -65,8 +66,8 @@ export const Inputform = () => {
         w="99%"
         m="auto"
       >
-        <Box mt={"5px"} border={"1px solid grey"} w={["55%", "40%", "50%"]}>
-          SIDEBAR COMPONENT
+        <Box mt={"5px"}  w={["55%", "40%", "50%"]}>
+          <Sidebar/>
         </Box>
         <Box
           w={["140%", "135%", "140%"]}

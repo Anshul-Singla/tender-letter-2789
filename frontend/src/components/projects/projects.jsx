@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import Sidebar from "../Sidebar/Sidebar";
 
 //::::::::::: MAIN FUNCTION :::::::::::::::
 
@@ -116,8 +117,8 @@ export const Projects = () => {
         w="99%"
         m="auto"
       >
-        <Box border={"1px solid grey"} w={["55%", "40%", "50%"]}>
-          SIDEBAR COMPONENT
+        <Box w={["55%", "40%", "50%"]}>
+          <Sidebar/>
         </Box>
         <Box
           w={["140%", "135%", "140%"]}

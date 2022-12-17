@@ -29,6 +29,7 @@ import "react-timeline-bar/dist/index.css";
 import TimePicker from "react-time-picker";
 import ActiveProject from "./ActiveProject";
 import axios from "axios";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Tracker = () => {
     const toast = useToast()
@@ -176,6 +177,8 @@ const Tracker = () => {
 
 
     return (
+    <Flex>
+        <Sidebar/>
         <Box
             display={"flex"}
             flexDirection={["column", "column", "column"]}
@@ -400,6 +403,8 @@ const Tracker = () => {
                 </form>
             </Center>
         </Box>
+    </Flex>
+    
     );
 };
 

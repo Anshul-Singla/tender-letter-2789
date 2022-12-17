@@ -27,9 +27,11 @@ import { TbChartArcs, TbChecklist } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { GrIntegration } from "react-icons/gr";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { useState } from "react";
 
 const Sidebar = () => {
-  const { onOpen, onClose, isOpen } = useDisclosure();
+  // const { onOpen, onClose, val } = useDisclosure();
+  const [val , setVal] = useState(true)
   return (
     <Flex bg="#f6f7f8">
       <IconButton
@@ -40,16 +42,19 @@ const Sidebar = () => {
         left="5"
         zIndex={1}
         padding={2}
-        onClick={onOpen}
-        display={isOpen ? "none" : "block"}
+        onClick={() => val ? setVal(false) : setVal(true)}
+        display={val ? "none" : "block"}
       />
 
       <Box
         zIndex={1}
         h="100vh"
         width={["100%", "50%", "40%", "30%"]}
-        display={isOpen ? "flex" : "none"}
+        display={val ? "flex" : "none"}
         p={4}
+        position="fixed"
+        top="0"
+        left="0"
       >
         <VStack align="start">
           <Flex gap={4}>
@@ -57,14 +62,14 @@ const Sidebar = () => {
               size="sm"
               padding={2}
               icon={<AiOutlineLeft />}
-              onClick={onClose}
+              onClick={() => {setVal(false)}}
             />
             <Image src="https://app.tmetric.com/images/tmetric_logo_and_text.svg" />
           </Flex>
 
           <List color="black" fontWeight="400" fontSize="20px">
             <ListItem mt={2}>
-              <Link as={ReachLink} to="">
+              <Link as={ReachLink} to="/auth/tracker">
                 <ListIcon as={BsStopwatchFill} color="gray" mr={4} />
                 Time
               </Link>
@@ -129,7 +134,7 @@ const Sidebar = () => {
               <AccordionPanel pb={4}>
                 <List color="black" fontWeight="400" fontSize="16px">
                   <ListItem mt={2}>
-                    <Link as={ReachLink}>
+                    <Link as={ReachLink} to='/auth/projects'>
                       <ListIcon as={BsFolderFill} color="gray" /> Project
                     </Link>
                   </ListItem>
