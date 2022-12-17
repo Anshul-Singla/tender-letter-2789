@@ -3,7 +3,11 @@ import { Button, Input ,Box } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import "./Form.css"
-import {BsFillBriefcaseFill} from "react-icons/bs"
+import {BsFillBriefcaseFill,BsFillCalendar2DateFill,BsFillStopwatchFill} from "react-icons/bs";
+import {BiTask} from "react-icons/bi";
+import {ImUser} from "react-icons/im";
+import {RiDiscussFill} from "react-icons/ri"
+
 import {
     Modal,
     ModalOverlay,
@@ -31,7 +35,7 @@ import axios from 'axios';
        
 
    
-    const [task,setTask]=useState([])
+    // const [task,setTask]=useState([])
    
 
 const {Taskame,ProjectName,Assignee,Taskdate,Discription,time} = form ;
@@ -42,12 +46,19 @@ const handleChange=(e)=>{
     setForm({...form,[name]:value})
 }
 
+
 const hanldeSubmit=(e)=>{
+  if(form.projectname==""||form.taskname==""||form.date==""||form.description==""||form.estimatedtime==""||form.assignee==""||form.status==""){
+    alert("plz fill all the details")
+    
+    }
 axios.post("http://localhost:8080",form)
-setTask([...task,form])
+// setTask([...task,form])
 onClose()
 refresh(Date.now())
 }
+
+
 
 return (
       <>
@@ -63,19 +74,20 @@ return (
             <ModalHeader color={"red"}>Add New Project</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel className="formlable">Task name</FormLabel>
+              <FormControl isRequired>
+                <FormLabel display="flex" className="formlable"><BiTask size={"30px"}/>Task name</FormLabel>
                 <Input 
                 ref={initialRef} 
                 placeholder='Write a task name ' 
                 name="taskname"
-                isRequired
+               
+                // focusBorderColor='lime'
                 value={Taskame} 
                 onInput={handleChange}/>
               </FormControl>
   
-              <FormControl mt={4} >
-                <FormLabel display="flex" gap={"5px"} className="formlable"><BsFillBriefcaseFill size={"30px"}/>Project</FormLabel>
+              <FormControl mt={4}  isRequired >
+                <FormLabel display="flex"  className="formlable"><BsFillBriefcaseFill size={"30px"}/>Project</FormLabel>
                 <Input 
                 placeholder='Project Name' 
                 name="projectname" 
@@ -83,18 +95,18 @@ return (
                 onInput={handleChange} />
               </FormControl>
 
-              <FormControl mt={4}>
-                <FormLabel className="formlable">Assignee</FormLabel>
+              <FormControl mt={4}  isRequired>
+                <FormLabel display="flex" className="formlable"><ImUser size={"30px"}/>Assignee</FormLabel>
                 <Input
-                 placeholder='Ravi Roshan' 
+                 placeholder='Assignee Name' 
                  name="assignee" 
                 value={Assignee} 
                 onInput={handleChange} />
               </FormControl>
 
               
-              <FormControl mt={4}>
-                <FormLabel className="formlable">Due Date</FormLabel>
+              <FormControl mt={4}  isRequired>
+                <FormLabel display="flex" className="formlable"><BsFillCalendar2DateFill size={"30px"} />Due Date</FormLabel>
                 <Input 
                 type="date" 
              
@@ -104,8 +116,8 @@ return (
               </FormControl>
 
               
-              <FormControl mt={4}>
-                <FormLabel className="formlable">Task Description</FormLabel>
+              <FormControl mt={4}  isRequired>
+                <FormLabel display="flex" className="formlable"><RiDiscussFill size={"30px"}/>Task Description</FormLabel>
                 <Input 
                 placeholder='Enter Task Discription'
                 name="description" 
@@ -113,8 +125,8 @@ return (
                 onInput={handleChange}/>
               </FormControl>
               
-              <FormControl mt={4}>
-                <FormLabel className="formlable">Estimate Time</FormLabel>
+              <FormControl mt={4}  isRequired>
+                <FormLabel display="flex" className="formlable"><BsFillStopwatchFill size={"30px"}/>Estimate Time</FormLabel>
                 <Input 
                 type="time"
                 placeholder='Last name'

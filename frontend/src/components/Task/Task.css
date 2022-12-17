@@ -51,4 +51,17 @@ align-items: center;
     font-style:oblique;
     
 }
+@media screen and (max-width: 300px) {
+    .text{
+        font-size: small;
+        font-weight: 500;
+        font-style:oblique;
+        
+    }
+}
 
+@media screen and (max-width: 600px) {
+    .box{
+        width: 50%;
+    }
+}

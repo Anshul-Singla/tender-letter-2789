@@ -1,6 +1,7 @@
 .formlable{
 
    color:black;
-   
+   gap: 8px;
+   display: flex;
    
 }

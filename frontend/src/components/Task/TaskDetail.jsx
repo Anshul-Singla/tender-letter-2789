@@ -21,10 +21,20 @@ import "./TaskDetails.css"
 
 export default function TaskDetail({details,isOpen, onOpen, onClose}) {
   if(isOpen){
-    var {projectname,assignee,date,description,estimatedtime}=details
+    var {_id,projectname,assignee,date,description,estimatedtime,status}=details
    
   }
 
+
+var res="Not Completd"
+ if(status){
+  var Buttonstyle={
+ backgroundColor:"rgb(63, 252, 0)"
+   }
+  res="Complted"
+ }
+// }
+  
   //  console.log("details",projectname)
     
  
@@ -40,7 +50,22 @@ export default function TaskDetail({details,isOpen, onOpen, onClose}) {
 // }
    
 // },[])
- 
+
+
+
+const handleStatus=async(id,status)=>{
+
+
+try{
+    await axios.post(`http://localhost:8080/${id}`,{
+      status:!status
+    })
+   
+  }
+  catch(e){
+    console.log(e.message)
+  }  
+}
 
 
 
@@ -52,8 +77,8 @@ return (
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader><Text fontSize="40px" >TASK DETAILS</Text></DrawerHeader>
-            <Button> <GrValidate/> mark as complte</Button>
+            <DrawerHeader><Text fontSize="40px" color={"red"} >TASK DETAILS</Text></DrawerHeader>
+            <Button onClick={()=>{handleStatus(_id,status);onClose()}} style={Buttonstyle}  > <GrValidate/>{res}</Button>
             <DrawerBody>
  
             <SimpleGrid columns={2} spacing={41} fontSize="30px" fontWeight={"500"} padding="10px">
@@ -72,7 +97,7 @@ return (
             </DrawerBody>
             <DrawerFooter>
                 {/* <Button colorScheme='blue' mr={3} onClick={onClose}>Save</Button> */}
-            <Button backgroundColor='blue' variant='outline' mr={3} onClick={onClose}>
+            <Button backgroundColor='teal' color="white" variant='outline' mr={3} onClick={onClose}>
               Close
             </Button>
             
