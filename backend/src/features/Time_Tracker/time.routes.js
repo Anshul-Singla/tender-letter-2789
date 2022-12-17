@@ -8,7 +8,7 @@ timeRoute.post("/new", async (req, res) => {
 
     try {
         const time = new TimeModel({ desc, tag, project, start_time, end_time });
-        console.log(time);
+        // console.log(time);
         await time.save();
         return res.status(201).send(time);
     } catch (e) {
@@ -21,7 +21,7 @@ timeRoute.post("/new", async (req, res) => {
 timeRoute.get("/show", async (req, res) => {
     try {
         const time = await TimeModel.find();
-        console.log(time);
+        // console.log(time);
         return res.status(200).send(time);
     } catch (e) {
         console.log(e);
@@ -78,7 +78,7 @@ timeRoute.delete("/delete/:id", async (req, res) => {
 // <<<<<<<<<<<<<<< TOOGLE >>>>>>>>>>>>>
 timeRoute.post("/toggle", async (req, res) => {
     const { done } = req.body;
-    console.log(done);
+    // console.log(done);
 
     if (!done) {
         const time = await TimeModel.find({ done: done });

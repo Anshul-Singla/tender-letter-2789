@@ -13,15 +13,15 @@ const ActiveProject = ({ props, setPlay, play, DeleteProject,toogle,UpdateProjec
 
     const Start = () => {
         setIs(true)
-        setPlay(play + 1)
+        // setPlay(play + 1)
         if (!timerId.current) {
             timerId.current = setInterval(() => {
                 setCount((count) => count + 1)
-            }, 60000)
+            }, 1000)
         }
     }
     const Pause = () => {
-        setPlay(play - 1)
+        // setPlay(play - 1)
         setIs(false)
         clearTimeout(timerId.current)
         timerId.current = null;
@@ -29,7 +29,7 @@ const ActiveProject = ({ props, setPlay, play, DeleteProject,toogle,UpdateProjec
 
 
     return (
-        <Box key={props._id} border={"0.2px solid #d8dde1"}    borderRadius={".5rem"} >
+        <Box key={props._id} border={"0.2px solid #d8dde1"} width={"auto"} height={"auto"}   borderRadius={".5rem"} >
             <Flex  p={".5rem"} justifyContent="space-between" >
                 <Flex gap="1rem">
                     <Checkbox onChange={() => toogle(props._id)} ></Checkbox>
@@ -40,6 +40,7 @@ const ActiveProject = ({ props, setPlay, play, DeleteProject,toogle,UpdateProjec
                     <Flex>{props.start_time} - {props.end_time}</Flex>
 
                     <Text>{count} : min </Text>
+                    <Flex flexDirection={["column","column","row"]} gap="1rem">
                     {!is ?
                         <FaPlay color='gray' onClick={Start} />
                         :
@@ -47,6 +48,7 @@ const ActiveProject = ({ props, setPlay, play, DeleteProject,toogle,UpdateProjec
                     }
                      <Text ml="20px" cursor={"pointer"}><GrEdit onClick={() => UpdateProject(props._id)} size={"20px"} /></Text>
                     <Text ml="20px" cursor={"pointer"}><MdOutlineDeleteOutline onClick={() => DeleteProject(props._id)} size={"20px"} /></Text>
+                    </Flex>
                 </Flex>
             </Flex>
 

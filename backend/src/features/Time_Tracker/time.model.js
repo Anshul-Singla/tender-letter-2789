@@ -6,7 +6,7 @@ const TimeSchema = new Schema({
     project:{type:String},
     start_time:[{type:Number,default:0}],
     end_time:[{type:Number,default:0}],
-    done: { type: Boolean,default: false},
+    done: {type: Boolean,default: false},
 })
 
 module.exports = model.times || model("time",TimeSchema)

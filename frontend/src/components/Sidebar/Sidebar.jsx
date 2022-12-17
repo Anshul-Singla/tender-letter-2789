@@ -33,8 +33,10 @@ const Sidebar = () => {
   // const { onOpen, onClose, val } = useDisclosure();
   const [val , setVal] = useState(true)
   return (
-    <Flex bg="#f6f7f8">
+    <Flex bg="#f6f7f8" >
+      
       <IconButton
+   
         size="sm"
         as={RxHamburgerMenu}
         position="absolute"
@@ -47,9 +49,12 @@ const Sidebar = () => {
       />
 
       <Box
+      // border={"1px solid black"}
+        backgroundColor={"#eaeaea"}
         zIndex={1}
         h="100vh"
-        width={["100%", "50%", "40%", "30%"]}
+        w={"fit-content"}
+        // width={["100%", "50%", "40%", "30%"]}
         display={val ? "flex" : "none"}
         p={4}
         position="fixed"
