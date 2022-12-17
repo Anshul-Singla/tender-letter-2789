@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import logo from '../../logo/time_tracker_logo.png'
+import logo from '../../logo/time_tracker_logo.png';
 import { Box, Center, Flex,  Image, Text , FormControl,FormLabel,Input, Button, Heading, useToast,} from '@chakra-ui/react';
 import { FcGoogle } from 'react-icons/fc';
 import {AiFillWindows , AiFillApple} from'react-icons/ai';
@@ -41,8 +41,9 @@ const Login = () => {
               duration: 1200,
               isClosable: true,
               position: "top",
-            })}
-            // navigate("/login");
+            })
+            // navigate("/tracker");
+        }
         else if (message == "Wrong Credential!")
           toast({
             title: "Wrong Credential!",

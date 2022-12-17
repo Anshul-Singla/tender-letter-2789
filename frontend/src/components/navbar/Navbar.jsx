@@ -39,7 +39,9 @@ const Navbar = () => {
                         <AppsIntegrations/>
                     </Box>
                 </Box>
-                <Text cursor='pointer'>Pricing</Text>
+                <Link to='/pricing'>
+                    <Text cursor='pointer'>Pricing</Text>
+                </Link>
                 <Text cursor='pointer'>Support</Text>
                 <Text cursor='pointer'>Blog</Text>
             </Flex>
