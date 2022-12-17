@@ -23,7 +23,7 @@ const Login = () => {
 
     // if (Token || gAuth)
     if (Token) {
-        navigate("/");
+        navigate("/auth/tracker");
         toast({
           title: "You have loged IN",
           status: "success",
@@ -42,7 +42,7 @@ const Login = () => {
               isClosable: true,
               position: "top",
             })
-            // navigate("/tracker");
+            navigate("/auth/tracker");
         }
         else if (message == "Wrong Credential!")
           toast({

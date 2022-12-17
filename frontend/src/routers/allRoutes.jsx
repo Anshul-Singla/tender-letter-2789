@@ -7,6 +7,7 @@ import { Inputform } from '../components/projects/form';
 import Pricing from "../components/pricing_page/Pricing";
 import Login from "../components/login/Login";
 import Signup from "../components/signup/Signup";
+import Authprovider from "../components/Private/Authprovider";
 // import Time from "../components/Time_Tracker/Time";
 
 
@@ -15,11 +16,23 @@ const AllRoutes = () => {
     <Routes>
 
         <Route path="/" element={<Landing/>} />
-        <Route path='/tracker' element={<Tracker/>}/>
+        <Route path='/auth/tracker' element={
+        <Authprovider>
+          <Tracker/>
+        </Authprovider>
+        }/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
-        <Route path='/auth/projects' element={<Projects/>}/>
-        <Route path="/auth/projects/new" element={<Inputform />}/>
+        <Route path='/auth/projects' element={
+        <Authprovider>
+          <Projects/>
+        </Authprovider>
+        }/>
+        <Route path="/auth/projects/new" element={
+        <Authprovider>
+          <Inputform />
+        </Authprovider>
+        }/>
 
       <Route path="/pricing" element={<Pricing />} />
 
