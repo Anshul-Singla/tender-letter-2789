@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
   Flex,
   IconButton,
   Image,
@@ -67,7 +68,6 @@ const Sidebar = () => {
             />
             <Image src={Logo} height="50px" width="80px" />
           </Flex>
-
           <List color="black" fontWeight="400" fontSize="20px">
             <ListItem mt={2}>
               <Link as={ReachLink} to="/auth/tracker">
@@ -77,14 +77,12 @@ const Sidebar = () => {
             </ListItem>
             <ListItem mt={2}>
               <Link as={ReachLink} to="">
-                {" "}
                 <ListIcon as={RiBillFill} color="gray" mr={4} />
                 My Work
               </Link>
             </ListItem>
             <ListItem mt={2}>
               <Link as={ReachLink} to="/auth/tasks">
-                {" "}
                 <ListIcon as={BsFolderFill} color="gray" mr={3} /> Tasks
               </Link>
             </ListItem>
@@ -206,6 +204,11 @@ const Sidebar = () => {
             </AccordionItem>
           </Accordion>
         </VStack>
+        <Box position="absolute" bottom="5">
+          <Button width="100%" colorScheme="messenger">
+            Logout
+          </Button>
+        </Box>
       </Box>
     </Flex>
   );
