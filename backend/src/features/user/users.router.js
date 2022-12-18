@@ -46,6 +46,7 @@ app.post("/login", async (req, res) => {
   // const refreshToken = jwt.sign({}, "REFRESH");
   return res.send({
     Token: Token,
+    role : user.role, 
     message: "You have signup Successfully",
   });
 });

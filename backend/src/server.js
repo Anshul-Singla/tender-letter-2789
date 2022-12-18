@@ -4,7 +4,9 @@ const cors = require("cors");
 const projectRoute = require("./features/projects/routes");
 const trackerRoute = require("./features/Time_Tracker/time.routes");
 const usersRoute = require("./features/user/users.router");
-const taskRouter= require("./features/Task/task.router")
+const taskRouter= require("./features/Task/task.router");
+const adminRouter= require("./features/admin/admin.routes");
+
 //-----------------------------------------------------------
 let PORT = 8080;
 //------------------------------------------------------------
@@ -24,6 +26,8 @@ app.use("/project", projectRoute);
 app.use("/user",usersRoute)
 //:::::::::::Tasks Route:::::::::::::::::::
 app.use("/task",taskRouter)
+//:::::::::::Admin Route:::::::::::::::::::
+app.use("/admin",adminRouter)
 
 
 

@@ -15,9 +15,10 @@ const Navbar = () => {
     position='fixed'
     top={0}
     left={0}
-    w="99vw"
+    w="99.9vw"
     backgroundColor="#fff"
     zIndex='9999'
+    className='navbar'
      >
         <Flex justifyContent='space-between' alignItems='center' w="90%" margin='0 auto'> 
             <Flex gap='1rem' justifyContent='center' alignItems='center' > 

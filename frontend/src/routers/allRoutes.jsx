@@ -9,6 +9,7 @@ import Login from "../components/login/Login";
 import Signup from "../components/signup/Signup";
 import Authprovider from "../components/Private/Authprovider";
 import Task from '../components/Task/Task'
+import AdminPanel from "../components/admin/AdminPanel";
 // import Time from "../components/Time_Tracker/Time";
 
 
@@ -41,7 +42,11 @@ const AllRoutes = () => {
           <Task/>
         </Authprovider>
       } />
-
+      <Route path='/admin' element={
+        <Authprovider>
+          <AdminPanel/>
+        </Authprovider>
+     }  />
       {/* <Route path='/timer' element={<Time/>}/> */}
 
     </Routes>

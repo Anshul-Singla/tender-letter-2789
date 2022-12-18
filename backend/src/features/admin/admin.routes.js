@@ -47,6 +47,8 @@ app.patch("/users/:id", async (req, res) => {
 });
 
 app.delete("/users/:id", async (req, res) => {
+  const{id}=req.params;
+  console.log('id:', id)
   try {
     await User.findByIdAndDelete(req.params.id);
     res.send({ error: false, message: "User deleted successfully" });
@@ -54,3 +56,5 @@ app.delete("/users/:id", async (req, res) => {
     res.send({ error: true, messsage: "Something went wrong" });
   }
 });
+
+module.exports = app;

@@ -20,7 +20,9 @@ import {
   ListIcon,
   Text,
   Link,
+  Heading,
 } from "@chakra-ui/react";
+import { HamburgerIcon} from '@chakra-ui/icons'
 import { Link as ReachLink } from "react-router-dom";
 import { BsArrowRight, BsFolderFill, BsStopwatchFill } from "react-icons/bs";
 import { RiBillFill, RiTeamFill } from "react-icons/ri";
@@ -41,8 +43,8 @@ function Hamburger() {
   return (
     <>
       <ChakraProvider>
-        <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-          Open
+        <Button ref={btnRef}  onClick={onOpen} border='2px solid' >
+          <HamburgerIcon color='black'/>
         </Button>
         <Drawer
           isOpen={isOpen}
@@ -158,7 +160,7 @@ function Hamburger() {
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>
-              <Link as={ReachLink}>
+              <Link as={ReachLink} to='/pricing'>
                 <Text mt={3} fontSize="20px" fontWeight="600">
                   Pricing
                 </Text>
@@ -167,6 +169,19 @@ function Hamburger() {
               <Text mt={3} fontSize="20px" fontWeight="600">
                 Support
               </Text>
+              <Link to='/login' as={ReachLink}>
+                <Button w='90%' m='10px auto' colorScheme='messenger'>
+                  Log In
+                </Button>
+              </Link>
+              <Link to='/signup' as={ReachLink}>
+                <Button w='90%' m='10px auto' colorScheme='messenger'>
+                  Sign Up
+                </Button>
+              </Link>
+              <Button w='90%' m='10px auto'>
+                En
+              </Button>
               <hr />
             </DrawerBody>
           </DrawerContent>

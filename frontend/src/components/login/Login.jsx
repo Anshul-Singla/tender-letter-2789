@@ -109,9 +109,12 @@ const Login = () => {
                     <Text _hover={{
                         borderBottom:'1px solid #3070f0'
                     }} cursor='pointer' fontSize='sm' color='#3070f0'>Cant't Log In?</Text>
-                    <Text _hover={{
-                        borderBottom:'1px solid #3070f0'
-                    }} cursor='pointer' fontSize='sm' color='#3070f0'>Sign Up</Text>
+                    <Link to='/signup'>
+                        <Text _hover={{
+                            borderBottom:'1px solid #3070f0'
+                        }} cursor='pointer' fontSize='sm' color='#3070f0'>Sign Up</Text>
+                    </Link>
+
                 </Flex>
             </Box>
         </Flex>

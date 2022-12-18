@@ -36,6 +36,8 @@ export const LoginReducer = (state = loginInitial, { type, payload }) => {
     }
     case user_login_success: {
       localStorage.setItem("token", payload.Token);
+      localStorage.setItem("role", payload.role);
+
       console.log('payload:', payload)
       return {
         ...state,
@@ -65,7 +67,7 @@ export const LoginReducer = (state = loginInitial, { type, payload }) => {
     // }
     case user_logout: {
       localStorage.removeItem("token");
-      localStorage.removeItem("email");
+      localStorage.removeItem("role");
       return {
         ...state,
         loading: false,
