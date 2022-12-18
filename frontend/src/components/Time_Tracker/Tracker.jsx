@@ -79,7 +79,7 @@ const Tracker = () => {
 
     // <<<<<<<<<<< GET DATA >>>>>>>>>>
     const GetData = async () => {
-        return await axios.get("http://localhost:8080/tracker/show")
+        return await axios.get("https://time-tracker-server.onrender.com/tracker/show")
             .then((res) => {
                 //  console.log("res",res.data)
                 setData(res.data)
@@ -102,7 +102,7 @@ const Tracker = () => {
     // <<<<<<<<<<< FORM SUBMIT >>>>>>>>>>
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await axios.post("http://localhost:8080/tracker/new", form)
+        await axios.post("https://time-tracker-server.onrender.com/tracker/new", form)
         onClose()
         set();
         GetData()
@@ -121,7 +121,7 @@ const Tracker = () => {
     // <<<<<<<<<<< DELETE DATA >>>>>>>>>>
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/tracker/delete/${id}`);
+            await axios.delete(`https://time-tracker-server.onrender.com/tracker/delete/${id}`);
             setData(
                 data.filter((el) => {
                     return el._id !== id;
@@ -149,7 +149,7 @@ const Tracker = () => {
         console.log(update);
         try {
             await axios
-                .post(`http://localhost:8080/tracker/update/${id}`, {
+                .post(`https://time-tracker-server.onrender.com/tracker/update/${id}`, {
                     desc: update,
                 })
                 .then((res) => GetData());
@@ -163,7 +163,7 @@ const Tracker = () => {
 
         try {
             await axios
-                .patch(`http://localhost:8080/tracker/toggle/${id}`, {
+                .patch(`https://time-tracker-server.onrender.com/tracker/toggle/${id}`, {
                     done: !done,
                 })
                 .then((res) => {

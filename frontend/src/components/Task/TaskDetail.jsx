@@ -57,7 +57,7 @@ const handleStatus=async(id,status)=>{
 
 
 try{
-    await axios.post(`http://localhost:8080/${id}`,{
+    await axios.post(`https://time-tracker-server.onrender.com/${id}`,{
       status:!status
     })
    

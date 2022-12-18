@@ -14,6 +14,7 @@ import {
   List,
   ListIcon,
   ListItem,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import { AiFillTags, AiOutlineLeft } from "react-icons/ai";
@@ -24,13 +25,16 @@ import { FaChartBar } from "react-icons/fa";
 import { GiPalmTree } from "react-icons/gi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { TbChartArcs, TbChecklist } from "react-icons/tb";
-import { CgProfile } from "react-icons/cg";
+import { CgProfile  } from "react-icons/cg";
 import { GrIntegration } from "react-icons/gr";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import Logo from "../../logo/time_tracker_logo.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from "../redux/userRedux/login.action";
+import jwt_decode from "jwt-decode";
+ 
+
 
 const Sidebar = () => {
   const [val, setVal] = useState(true);
@@ -39,6 +43,9 @@ const Sidebar = () => {
     console.log("life is awesome");
     dispatch(userLogout());
   }
+var token = localStorage.getItem('token')
+var decoded = jwt_decode(token);
+console.log('decoded:', decoded)
   return (
     <Flex bg="#f6f7f8" >
       
@@ -217,6 +224,10 @@ const Sidebar = () => {
           </Accordion>
         </VStack>
         <Box position="absolute" bottom="5" w='85%'>
+        <Flex  justifyContent='center' alignItems='center' gap='1rem' border = '1px solid teal' m='10px auto' p='5px 0' borderRadius='5px'>
+              <CgProfile/>
+              <Text> {decoded.name} </Text>
+        </Flex>
           <Button width="100%" colorScheme='teal' variant='outline' w='100%' onClick={handleLogOut}>
             Logout
           </Button>

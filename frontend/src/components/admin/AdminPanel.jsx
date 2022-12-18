@@ -27,7 +27,7 @@ const AdminPanel = () => {
 
     const getData = async () => {
         return await axios
-          .get("http://localhost:8080/admin/users")
+          .get("https://time-tracker-server.onrender.com/admin/users")
           .then((res) =>{
             console.log('res.data:', res.data)
              setUsers( res.data.users)
@@ -60,7 +60,7 @@ const AdminPanel = () => {
         }
     },[]);
     const handleDelete= async (id)=>{
-      let {data} = await axios.delete(`http://localhost:8080/admin/users/${id}`);
+      let {data} = await axios.delete(`https://time-tracker-server.onrender.com/admin/users/${id}`);
       if(data){
         let updatedData = users.filter(user => user._id != id)
         setUsers(updatedData);

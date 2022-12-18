@@ -24,14 +24,14 @@ export const Projects = () => {
 
   const getData = async () => {
     await axios
-      .get("http://localhost:8080/project/show")
+      .get("https://time-tracker-server.onrender.com/project/show")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err.message));
   };
 
   const filter = async (done) => {
     await axios
-      .post("http://localhost:8080/project/toggle", { done: done })
+      .post("https://time-tracker-server.onrender.com/project/toggle", { done: done })
       .then((res) => {
         setData(res.data);
       })
@@ -45,7 +45,7 @@ export const Projects = () => {
   //:::::::::::::::: DELETING DATA :::::::::::::::::
   const handleDelete = async (id, ti) => {
     try {
-      await axios.delete(`http://localhost:8080/project/delete/${id}`);
+      await axios.delete(`https://time-tracker-server.onrender.com/project/delete/${id}`);
       setData(
         data.filter((el) => {
           return el._id !== id;
@@ -60,7 +60,7 @@ export const Projects = () => {
   let toogle = async (id) => {
     try {
       await axios
-        .post(`http://localhost:8080/project/update/${id}`, {
+        .post(`https://time-tracker-server.onrender.com/project/update/${id}`, {
           done: true,
         })
         .then((res) => getData());
@@ -76,7 +76,7 @@ export const Projects = () => {
     console.log(update);
     try {
       await axios
-        .post(`http://localhost:8080/project/update/${id}`, {
+        .post(`https://time-tracker-server.onrender.com/project/update/${id}`, {
           desc: update,
         })
         .then((res) => getData());
@@ -113,16 +113,27 @@ export const Projects = () => {
     <>
       <Box
         display={"grid"}
-        gridTemplateColumns="repeat(2, 1fr)"
+        // gap='3rem'
+        // gridTemplateColumns="repeat(2, 1fr)"
         w="99%"
         m="auto"
+        // border='2px solid'
       >
-        <Box w={["55%", "40%", "50%"]}>
+        <Box
+        //  w={["55%", "40%", "50%"]}
+        // border='1px solid'
+        // w={"30vw"}
+         >
           <Sidebar/>
         </Box>
         <Box
-          w={["140%", "135%", "140%"]}
-          ml={["-4rem", "-8.5rem", "-11rem", "-19rem"]}
+          // w={["140%", "135%", "140%"]}
+          w='80vw'
+          // ml=''
+          p='1rem'
+          ml={[ "1rem","2rem","200px"]}
+          border='2px solid'
+          borderRadius='25px'
         >
           {/* ::::::::::: STARTING THE PROJECTS PART :::::::::::*/}
 

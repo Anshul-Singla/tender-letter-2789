@@ -33,7 +33,7 @@ export const Inputform = () => {
   const handleSubmit = async () => {
     setData({ ...data, task: task, taskid: taskid, desc: desc });
     await axios
-      .post("http://localhost:8080/project/new", data)
+      .post("https://time-tracker-server.onrender.com/project/new", data)
       .then((res) => {
         console.log(res.data);
       })
@@ -62,21 +62,26 @@ export const Inputform = () => {
     <>
       <Box
         display={"grid"}
-        gridTemplateColumns="repeat(2, 1fr)"
+        // gap='3rem'
+        // gridTemplateColumns="repeat(2, 1fr)"
         w="99%"
         m="auto"
+        // border='2px solid'
       >
-        <Box mt={"5px"}  w={["55%", "40%", "50%"]}>
+        <Box >
           <Sidebar/>
         </Box>
         <Box
-          w={["140%", "135%", "140%"]}
-          ml={["-4rem", "-8.5rem", "-11rem", "-19rem"]}
+           w='80vw'
+           p='1rem'
+           ml={[ "1rem","2rem","200px"]}
+           border='2px solid'
+           borderRadius='25px'
         >
           {/* :::::::::::::::::: MAIN FORM FOR ADDING DATA :::::::::::::::::*/}
 
           <Box onClick={handleBack} w="100%" p={4}>
-            <Text fontSize={["2xl", "2xl", "3xl"]}>← New Project</Text>
+            <Text fontSize={["2xl", "2xl", "3xl"]} cursor='pointer'>← New Project</Text>
           </Box>
           {/* ::::::::::::::::::::::::: FORM UI ::::::::::::::::::::::::::::: */}
           <Box
