@@ -1,0 +1,19 @@
+.tableRow > td {
+    transition: all 250ms ease-in-out;
+}
+.tableRow:nth-child(even) > td {
+    color: #fff;
+    /* color: pink; */
+}
+.tableRow:hover > td{
+    transform: scale(1.1);
+    /* margin: 20px 0; */
+}
+.deleteIcone:hover{
+    transform: scale(1.25);
+}
+@media screen and (max-Width:600px) {
+    .tableEmail{
+        display:none
+    }
+}
