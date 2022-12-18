@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { GoPlay } from "react-icons/go";
 import { HiStop } from "react-icons/hi";
-import { SlCalender } from "react-icons/sl";
 import { RxDotFilled } from "react-icons/rx";
-import { MdOutlineAddCircleOutline} from "react-icons/md";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-
 import chart from "../Time_Tracker/chart.png";
+import "react-timeline-bar/dist/index.css";
+import TimePicker from "react-time-picker";
+import ActiveProject from "./ActiveProject";
+import axios from "axios";
+import Sidebar from "../Sidebar/Sidebar";
 import {
     Box,
     Center,
-    Container,
     Flex,
     Input,
     Text,
-    FlexBox,
     Image,
     Button,
     Checkbox,
@@ -25,23 +26,18 @@ import {
 } from "@chakra-ui/react";
 
 
-import "react-timeline-bar/dist/index.css";
-import TimePicker from "react-time-picker";
-import ActiveProject from "./ActiveProject";
-import axios from "axios";
-import Sidebar from "../Sidebar/Sidebar";
-
 const Tracker = () => {
-    const toast = useToast()
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [play, setPlay] = useState(0);
-    const [uptime, setUptime] = useState([0, 0]);
-    let [value, onChange] = useState("8:00");
-    let [value1, onChange1] = useState("9:00");
-    const [shour, setshour] = useState([]);
-    const [ehour, setehour] = useState([]);
 
-    const [data, setData] = useState([]);
+    const toast = useToast()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [play, setPlay] = useState(0)
+    const [uptime, setUptime] = useState([0, 0])
+    let [value, onChange] = useState("8:00")
+    let [value1, onChange1] = useState("9:00")
+    const [shour, setshour] = useState([])
+    const [ehour, setehour] = useState([])
+console.log("shour",shour,"endhour",ehour)
+    const [data, setData] = useState([])
     const [form, setForm] = useState({
         desc: "",
         project: "",
@@ -49,8 +45,7 @@ const Tracker = () => {
         start_time: shour,
         end_time: ehour,
     });
-
-    const [done, setDone] = useState(false)
+    const [done, setDone] = useState(true)
     // console.log("data", data)
 
 
@@ -62,6 +57,7 @@ const Tracker = () => {
                 setData(res.data)
             })
     }
+
     // <<<<<<<<<<< USE EFFECT >>>>>>>>>>
     useEffect(() => {
         GetData()
@@ -74,6 +70,7 @@ const Tracker = () => {
             [name]: value
         })
     }
+
     // <<<<<<<<<<< FORM SUBMIT >>>>>>>>>>
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -90,9 +87,8 @@ const Tracker = () => {
             isClosable: true,
             position: "top"
         })
-
-
     }
+
     // <<<<<<<<<<< DELETE DATA >>>>>>>>>>
     const handleDelete = async (id) => {
         try {
@@ -182,7 +178,6 @@ const Tracker = () => {
     }
 
 
-
     return (
 
         <Flex justifyContent={"space-between"} >
@@ -193,7 +188,6 @@ const Tracker = () => {
                 display={"flex"}
                 flexDirection={["column", "column", "column"]}
                 gap={"2rem"}
-
                 w={["100%", "100%", "84%"]}
                 padding={"1rem"}
             >
@@ -212,8 +206,12 @@ const Tracker = () => {
                         <Flex gap="4" align={"center"} >
                             {done ?
                                 <GoPlay cursor={"pointer"} onClick={handleTimer} style={{ color: "#17c22e", fontSize: "3rem" }} />
-                                : <MdOutlineAddCircleOutline cursor={"pointer"} onClick={handleTimer} style={{ color: "#17c22e", fontSize: "3rem" }}/>}
-                            <HiStop style={{ fontSize: "2rem" }} />
+                                : <MdOutlineAddCircleOutline cursor={"pointer"} onClick={handleTimer} style={{ color: "#17c22e", fontSize: "3rem" }} />
+                            }
+                            {!done ? <HiStop cursor={"pointer"} onClick={handleTimer} style={{ color: "red", fontSize: "3rem" }} />
+                                : <HiStop cursor={"pointer"} onClick={handleTimer} style={{ color: "grey", fontSize: "3rem" }} />
+                            }
+
                             <Text fontSize="2rem">My Time</Text>
                         </Flex>
 
@@ -263,7 +261,6 @@ const Tracker = () => {
                                 </Text>
                             </Box>
                         </Box>
-
                         <Image src={chart} alt="chart" />
                     </Box>
                 </Center>
@@ -297,27 +294,25 @@ const Tracker = () => {
                         </Box>
 
                         {/* <<<<<<<< MAP THE DATA >>>>>>>>> */}
-                        {
-                            data.length === 0 ? (
-                                <Text overflow={"hidden"}>
-                                    "No work time is recorded for this day."
-                                </Text>
-                            ) : (
-                                data.map((e) => {
-                                    return (
-                                        <ActiveProject
-                                            props={e}
-                                            key={e._id}
-                                            setPlay={setPlay}
-                                            play={play}
-                                            DeleteProject={handleDelete}
-                                            toogle={toogle}
-                                            UpdateProject={handleUpdate}
-
-                                        />
-                                    );
-                                })
-                            )
+                        {data.length === 0 ? (
+                            <Text overflow={"hidden"}>
+                                "No work time is recorded for this day."
+                            </Text>
+                        ) : (
+                            data.map((e) => {
+                                return (
+                                    <ActiveProject
+                                        props={e}
+                                        key={e._id}
+                                        setPlay={setPlay}
+                                        play={play}
+                                        DeleteProject={handleDelete}
+                                        toogle={toogle}
+                                        UpdateProject={handleUpdate}
+                                    />
+                                );
+                            })
+                        )
                         }
                     </Box>
                 </Center>
@@ -335,9 +330,7 @@ const Tracker = () => {
                                 p={"1rem"}
                                 pt="3rem"
                             >
-
                                 <Flex mt={"-3%"} justifyContent="space-between">
-
                                     <Box w="50%">
                                         <Text textAlign={"left"}>Description</Text>
                                         <Input
@@ -349,19 +342,16 @@ const Tracker = () => {
                                             placeholder="Description"
                                         ></Input>
                                     </Box>
-
                                     {/* <Box w="55%">
                                     <Text textAlign={"left"}>Start_time</Text>
                                     <TimePicker name="start_time" onChange={handleChange} value={form.start_time} />
-                                <Input
+                                    <Input
                                         name="start_time"
                                         value={form.start_time}
                                         onChange={handleChange}
                                         placeholder="start_time"
                                     />
-                                </Box> */}
-
-
+                                    </Box> */}
                                     <Box>
                                         <Text textAlign={"left"}>Start Time</Text>
                                         <TimePicker onChange={onChange} value={value} />
@@ -369,9 +359,7 @@ const Tracker = () => {
                                     <Box>
                                         <Text textAlign={"left"}>End Time</Text>
                                         <TimePicker onChange={onChange1} value={value1} />
-
                                     </Box>
-
                                     <Box w="12%">
                                         <Text textAlign={"left"}>Duration</Text>
                                         <Text border="1px solid" borderRadius={"3px"}>
@@ -380,7 +368,6 @@ const Tracker = () => {
                                     </Box>
                                 </Flex>
 
-                                {/* Second Flex*/}
                                 <Flex mt="30px" w="60%" justifyContent={"space-between"}>
                                     <Box w="55%">
                                         <Text textAlign={"left"}>Add Project</Text>
@@ -397,7 +384,7 @@ const Tracker = () => {
                                     </Box>
                                 </Flex>
 
-                                {/* Form End */}
+                                {/* FORM BUTTONS */}
                                 <Flex gap="20px" textAlign={"left"} mt="20px">
                                     <Button
                                         bg="blue"
@@ -419,7 +406,6 @@ const Tracker = () => {
             </Box>
             {/* </Center> */}
         </Flex>
-
     );
 };
 
