@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
   Flex,
   IconButton,
   Image,
@@ -14,7 +15,6 @@ import {
   ListIcon,
   ListItem,
   VStack,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { AiFillTags, AiOutlineLeft } from "react-icons/ai";
 import { Link as ReachLink } from "react-router-dom";
@@ -28,10 +28,10 @@ import { CgProfile } from "react-icons/cg";
 import { GrIntegration } from "react-icons/gr";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
+import Logo from "../../logo/time_tracker_logo.png";
 
 const Sidebar = () => {
-  // const { onOpen, onClose, val } = useDisclosure();
-  const [val , setVal] = useState(true)
+  const [val, setVal] = useState(true);
   return (
     <Flex bg="#f6f7f8" >
       
@@ -44,7 +44,7 @@ const Sidebar = () => {
         left="5"
         zIndex={1}
         padding={2}
-        onClick={() => val ? setVal(false) : setVal(true)}
+        onClick={() => (val ? setVal(false) : setVal(true))}
         display={val ? "none" : "block"}
       />
 
@@ -67,11 +67,12 @@ const Sidebar = () => {
               size="sm"
               padding={2}
               icon={<AiOutlineLeft />}
-              onClick={() => {setVal(false)}}
+              onClick={() => {
+                setVal(false);
+              }}
             />
-            <Image src="https://app.tmetric.com/images/tmetric_logo_and_text.svg" />
+            <Image src={Logo} height="50px" width="80px" />
           </Flex>
-
           <List color="black" fontWeight="400" fontSize="20px">
             <ListItem mt={2}>
               <Link as={ReachLink} to="/auth/tracker">
@@ -81,14 +82,12 @@ const Sidebar = () => {
             </ListItem>
             <ListItem mt={2}>
               <Link as={ReachLink} to="">
-                {" "}
                 <ListIcon as={RiBillFill} color="gray" mr={4} />
                 My Work
               </Link>
             </ListItem>
             <ListItem mt={2}>
               <Link as={ReachLink} to="/auth/tasks">
-                {" "}
                 <ListIcon as={BsFolderFill} color="gray" mr={3} /> Tasks
               </Link>
             </ListItem>
@@ -139,7 +138,7 @@ const Sidebar = () => {
               <AccordionPanel pb={4}>
                 <List color="black" fontWeight="400" fontSize="16px">
                   <ListItem mt={2}>
-                    <Link as={ReachLink} to='/auth/projects'>
+                    <Link as={ReachLink} to="/auth/projects">
                       <ListIcon as={BsFolderFill} color="gray" /> Project
                     </Link>
                   </ListItem>
@@ -210,6 +209,11 @@ const Sidebar = () => {
             </AccordionItem>
           </Accordion>
         </VStack>
+        <Box position="absolute" bottom="5">
+          <Button width="100%" colorScheme="messenger">
+            Logout
+          </Button>
+        </Box>
       </Box>
     </Flex>
   );
