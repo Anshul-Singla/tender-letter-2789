@@ -5,10 +5,26 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import style from './AdminPanel.css'
+import { Link, useNavigate } from 'react-router-dom';
 
 const AdminPanel = () => {
-const [users , setUsers] = useState([]);
-const toast = useToast();
+    const [users , setUsers] = useState([]);
+    const role = localStorage.getItem('role');
+    const navigate = useNavigate();
+    const toast = useToast();
+    console.log('role:', role)
+    if(role != "admin"){
+        navigate('/auth/tracker');
+        toast({
+            title: 'Only for admin',
+            // description: "We've created Time Entry for you.",
+            status: 'warning',
+            duration: 1500,
+            isClosable: true,
+            position: "top-left"
+          })
+    }
+
     const getData = async () => {
         return await axios
           .get("http://localhost:8080/admin/users")
@@ -20,15 +36,28 @@ const toast = useToast();
       };
       console.log('users:', users)
       useEffect(() => {
-          getData()
-          toast({
-              title: 'Welcome Admin',
-              description: "You can Edit the users",
-              status: 'success',
-              duration: 1500,
-              isClosable: true,
-              position:'top-left',
-            })
+          getData();
+          if(role != "admin"){
+            navigate('/auth/tracker');
+            toast({
+                title: 'Only for admin',
+                // description: "We've created Time Entry for you.",
+                status: 'warning',
+                duration: 1500,
+                isClosable: true,
+                position: "top-left"
+              })
+        }else{
+
+            toast({
+                title: 'Welcome Admin',
+                description: "You can Edit the users",
+                status: 'success',
+                duration: 1500,
+                isClosable: true,
+                position:'top-left',
+              })
+        }
     },[]);
     const handleDelete= async (id)=>{
       let {data} = await axios.delete(`http://localhost:8080/admin/users/${id}`);
@@ -39,9 +68,6 @@ const toast = useToast();
         console.log('life_is_awesome:')
         // getData()
       }
-    // const handleClick=(id)=>{
-    //    console.log(id)
-    //   }
   return (
     <Box backgroundImage='https://img.freepik.com/premium-vector/blackboard-background-design_87498-1211.jpg?w=740' backgroundRepeat='no-repeat' backgroundSize='cover' w='100vw' h='100vh'>
         <Center>

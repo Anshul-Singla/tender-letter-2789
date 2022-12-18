@@ -42,7 +42,11 @@ const AllRoutes = () => {
           <Task/>
         </Authprovider>
       } />
-      <Route path='/admin' element={ <AdminPanel/> }  />
+      <Route path='/admin' element={
+        <Authprovider>
+          <AdminPanel/>
+        </Authprovider>
+     }  />
       {/* <Route path='/timer' element={<Time/>}/> */}
 
     </Routes>
