@@ -5,13 +5,16 @@ import Navbar from '../navbar/Navbar';
 import {ArrowForwardIcon } from '@chakra-ui/icons';
 import style from './Landing.css'
 import Footer from '../pricing_page/Footer';
+import Hamburger from '../Hamburger/Hamburger';
+import NavbarResponsive from '../navbar/NavbarResponsive';
 
 const Landing = () => {
   return (
-    <Box>
+    <Box overflowX='hidden'>
         {/* <Heading>LIFE IS AWESOME...</Heading> */}
-        <Navbar/>
-        <Box className='middleName' margin='50px 0'>
+        <Navbar /> 
+        <NavbarResponsive/>
+        <Box className='middleName' >
            <FirstPart/>
            <SecondPart/>
            <ThirdPart/>
@@ -38,13 +41,13 @@ const FirstPart = () => {
 ]
   return (
     <Box>
-      <Box backgroundColor='#FBEFCA' padding='40px 25px' >
+      <Box backgroundColor='#FBEFCA' padding='40px 25px' w='99vw' >
         {/* <Center>
           <Heading>LIFE IS AWESOME.... FirstPart</Heading>
         </Center> */}
-        <Flex>
-          <Box>
-            <Heading size='3xl' noOfLines={3} padding='20px 10px' margin='15px 0'>Empower your Team with Time Tracking</Heading>
+        <Flex className='firstPartFlex' >
+          <Box  className='firstPartBox' >
+            <Heading className='firstPartBoxHeading' size='3xl' noOfLines={6} padding='20px 10px' margin='15px 0'>Empower your Team with Time Tracking</Heading>
             <Text fontSize='2xl' fontWeight='500' margin='15px 0'>TMetric streamlines your team work so you can focus on what matters</Text>
             <Flex alignItems='center' margin='20px 0'>
                 <Box border='1px solid grey' padding={1} backgroundColor='#fff' borderRadius=' 3px 0 0 3px '>
@@ -59,13 +62,13 @@ const FirstPart = () => {
               <Text>Fully Functional 30-Day Trial</Text>
             </Flex>
           </Box>
-          <Image  src='https://tmetric.com/media/nb3imgh0/img-home-heading.svg' />
+          <Image  src='https://tmetric.com/media/nb3imgh0/img-home-heading.svg' m='20px auto' w={["70%" , "60%"]} />
         </Flex>
       </Box>
-      <Box w="99vw" m='20px 0' paddingBottom='20px' borderBottom='1px solid #e2e7eb'>
-        <Flex>
+      <Box w="98vw" m='20px 0' paddingBottom='20px' borderBottom='1px solid #e2e7eb'>
+        <Flex flexWrap='wrap'>
           {
-            imageLinks.map(i => <Image src={i} w="9vw" margin="0 auto" />)
+            imageLinks.map(i => <Image src={i} w='150px' m='20px auto' />)
           }
         </Flex>
       </Box>
