@@ -29,9 +29,16 @@ import { GrIntegration } from "react-icons/gr";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import Logo from "../../logo/time_tracker_logo.png";
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogout } from "../redux/userRedux/login.action";
 
 const Sidebar = () => {
   const [val, setVal] = useState(true);
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    console.log("life is awesome");
+    dispatch(userLogout());
+  }
   return (
     <Flex bg="#f6f7f8" >
       
@@ -39,7 +46,7 @@ const Sidebar = () => {
    
         size="sm"
         as={RxHamburgerMenu}
-        position="absolute"
+        position="fixed"
         top="5"
         left="5"
         zIndex={1}
@@ -86,7 +93,7 @@ const Sidebar = () => {
                 My Work
               </Link>
             </ListItem>
-            <ListItem mt={2}>
+            <ListItem mt={2} >
               <Link as={ReachLink} to="/auth/tasks">
                 <ListIcon as={BsFolderFill} color="gray" mr={3} /> Tasks
               </Link>
@@ -209,8 +216,8 @@ const Sidebar = () => {
             </AccordionItem>
           </Accordion>
         </VStack>
-        <Box position="absolute" bottom="5">
-          <Button width="100%" colorScheme="messenger">
+        <Box position="absolute" bottom="5" w='85%'>
+          <Button width="100%" colorScheme='teal' variant='outline' w='100%' onClick={handleLogOut}>
             Logout
           </Button>
         </Box>

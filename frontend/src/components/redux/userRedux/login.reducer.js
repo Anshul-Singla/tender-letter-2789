@@ -67,7 +67,7 @@ export const LoginReducer = (state = loginInitial, { type, payload }) => {
     // }
     case user_logout: {
       localStorage.removeItem("token");
-      localStorage.removeItem("email");
+      localStorage.removeItem("role");
       return {
         ...state,
         loading: false,

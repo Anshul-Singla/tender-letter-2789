@@ -47,7 +47,7 @@ const FirstPart = () => {
         </Center> */}
         <Flex className='firstPartFlex' >
           <Box  className='firstPartBox' >
-            <Heading className='firstPartBoxHeading' size='3xl' noOfLines={6} padding='20px 10px' margin='15px 0'>Empower your Team with Time Tracking</Heading>
+            <Heading className='firstPartBoxHeading' size='3xl'  padding='20px 10px' margin='15px 0'>Empower your Team with Time Tracking</Heading>
             <Text fontSize='2xl' fontWeight='500' margin='15px 0'>TMetric streamlines your team work so you can focus on what matters</Text>
             <Flex alignItems='center' margin='20px 0'>
                 <Box border='1px solid grey' padding={1} backgroundColor='#fff' borderRadius=' 3px 0 0 3px '>
@@ -62,7 +62,7 @@ const FirstPart = () => {
               <Text>Fully Functional 30-Day Trial</Text>
             </Flex>
           </Box>
-          <Image  src='https://tmetric.com/media/nb3imgh0/img-home-heading.svg' m='20px auto' w={["70%" , "60%"]} />
+          <Image  src='https://tmetric.com/media/nb3imgh0/img-home-heading.svg' m='20px auto' w={["100%" , "60%"]} />
         </Flex>
       </Box>
       <Box w="98vw" m='20px 0' paddingBottom='20px' borderBottom='1px solid #e2e7eb'>
@@ -106,12 +106,12 @@ const SecondPart = () => {
     <Box m="50px 0">
       <Center p='20px 0' m='30px 0'>
         <Box w="60vw" textAlign='center'>
-          <Heading size='3xl' noOfLines={2} fontWeight='700' >Best time tracking features for your business</Heading>
+          <Heading size='3xl'  fontWeight='600' >Best time tracking features for your business</Heading>
         </Box>
       </Center>
-      <Flex justifyContent='space-evenly'>
-        <Image w={["1000px","800px"]} src='https://tmetric.com/media/1kxfndjp/img-advantages.svg' />
-        <Flex flexDirection='column' >
+      <Flex justifyContent='space-evenly' className='firstPartFlex' gap='1rem'>
+        <Image w={["100%" , "65%"]} m='20px auto' src='https://tmetric.com/media/1kxfndjp/img-advantages.svg' />
+        <Flex flexDirection='column' w='90%' m='0 auto' >
         {
           card.map(c => 
             // console.log('c:', c.name)
@@ -175,7 +175,7 @@ const ThirdPartCard = ({heading , list , link ,backgroundColor , flexDirection})
   
   // backgroundColor={`${backgroundColor}`}
   >
-    <Flex w='90vw' m='0 auto' alignItems='center' flexDirection={flexDirection}>
+    <Flex w='90vw' m='0 auto' alignItems='center' flexDirection={flexDirection} className='firstPartFlex'>
       <Box>
         <Heading textAlign='center' m='20px 0'>{heading}</Heading>
         <UnorderedList>
@@ -203,9 +203,7 @@ const FourtPart = () => {
     "https://tmetric.com/media/kbrcntmi/logo-integration-excel.svg",
     "https://tmetric.com/media/4aeci1fh/logo-integration-asana.svg",
     "https://tmetric.com/media/caxbzjss/logo-integration-jira.svg",
-    "https://tmetric.com/media/dw2nwjwv/logo-integration-gitlab.svg"
-  ]
-  let cardLinks2 =[
+    "https://tmetric.com/media/dw2nwjwv/logo-integration-gitlab.svg",
     "https://tmetric.com/media/me5ih5eu/logo-integration-gdocs.svg",
     "https://tmetric.com/media/0bzmfrlf/logo-integration-trello.svg",
     "https://tmetric.com/media/sdaj41fi/logo-integration-redmine.svg",
@@ -216,8 +214,8 @@ const FourtPart = () => {
     <Box>
       <Flex flexDirection='column' justifyContent='center' alignItems='center'gap='2rem' m='30px 0' >
         <Heading size='2xl' maxWidth='60%' textAlign='center'>Integrate time tracker tool with 50+ popular services</Heading>
-        <Text fontSize='2xl'>TMetric integrates with dozens of services, which lets you measure progress and activity in any tool you use.</Text>
-        <Flex gap='3rem'  justifyContent='center' alignItems='center'>
+        <Text fontSize='2xl' w='90%' m='0 auto'>TMetric integrates with dozens of services, which lets you measure progress and activity in any tool you use.</Text>
+        <Flex gap='3rem'  justifyContent='center' alignItems='center' className='firstPartFlex'>
           <Button colorScheme='messenger'>
             Start Free Trial
           </Button>
@@ -226,17 +224,17 @@ const FourtPart = () => {
           </Box>
         </Flex>
       </Flex>
-      <Box w="70%" m='0 auto'>
-        <Flex gap='1rem' justifyContent='center' alignItems='center' m='40px 0'>
+      <Box w={["100%"]} m='0 auto' >
+        <Flex gap='1rem' m='20px 0' flexWrap='wrap' justifyContent='center' alignItems='center'>
           {
             cardLinks1.map(l => <FourtPartCard link={l}  /> )
           }
         </Flex>
-        <Flex  gap='3rem' justifyContent='center' alignItems='center' m='40px 0'>
+        {/* <Flex  gap='3rem' m='20px 0' >
           {
             cardLinks2.map(l => <FourtPartCard link={l}  /> )
-          }
-        </Flex>
+          } 
+        </Flex>*/}
       </Box>
     </Box>
   )
@@ -244,17 +242,17 @@ const FourtPart = () => {
 const FourtPartCard = ({link}) => {
   return (
     <Box border='1px solid  #e2e7eb' padding="20px" borderRadius='10px' className='fourthPartCard'>
-        <Image src={link} />
+        <Image src={link} w={['120px']} />
     </Box>
   )
 }
 const FifthPart = () =>{
   return (
-    <Box backgroundColor='#fff2cc' p='10px 0 30px 0'>
+    <Box backgroundColor='#fff2cc' p='10px 0 30px 0' >
       {/* <Heading>LIFE IS AWESOME...</Heading> */}
       <Flex flexDirection='column' justifyContent='center' alignItems='center' gap='1rem' >
-        <Heading  fontWeight='700' m='20px 0 0 0 '>Read Hundreds of Reviews</Heading>
-        <Image src='https://tmetric.com/media/rt1k0zjc/img-rating-4-5.svg' w={350} m='20px 0' />
+        <Heading   m='20px 0 0 0 ' fontWeight='500' >Read Hundreds of Reviews</Heading>
+        <Image src='https://tmetric.com/media/rt1k0zjc/img-rating-4-5.svg' w={[ "70%",350]} m='20px 0' />
         <Heading size='2xl' fontWeight='500'>4.5 Customer Rating</Heading>
         <Heading color='#3070f0'>242 Reviews</Heading>
       </Flex>
@@ -286,8 +284,8 @@ const SixthPart = () => {
   ]
   return (
     <Box m='60px 0'>
-      <Heading size='2xl' textAlign='center' fontWeight='600' margin='5rem 0 30px 0'>Why choose TMetric?</Heading>
-      <Flex width='90vw' m='0 auto' gap='2rem'>
+      <Heading size='2xl' textAlign='center' fontWeight='500' margin='5rem 0 30px 0'>Why choose TMetric?</Heading>
+      <Flex width='90vw' m='0 auto' gap='2rem' flexWrap='wrap'>
         {
           sixthPartCard.map( c => <SixthPartCard link={c.link} text={c.text}/> )
         }
@@ -297,9 +295,9 @@ const SixthPart = () => {
 }
 const SixthPartCard = ({link , text}) => {
   return (
-    <Box border='1px solid #e2e7eb' w='15vw' p='40px 40px 10px 40px' borderRadius='15px' >
+    <Box border='1px solid #e2e7eb' w={["100%","50%",'212px']} p='40px 10px' m='0 auto' borderRadius='15px' >
       <Image src={link}/>
-      <Text> {text} </Text>
+      <Text fontWeight='600' m='30px 0'> {text} </Text>
     </Box>
   )
 }

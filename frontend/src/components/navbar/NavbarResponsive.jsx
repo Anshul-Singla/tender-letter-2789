@@ -5,7 +5,7 @@ import Hamburger from '../Hamburger/Hamburger';
 
 const NavbarResponsive = () => {
   return (
-    <Box backgroundColor='#fff' className='navbarResponsive'>
+    <Box backgroundColor='#fff' className='navbarResponsive' position='fixed'top={0}left={0} w='99vw' zIndex='999'>
         <Flex justifyContent='space-between' alignItems='center' w='90vw' m='0 auto' p='10px 0'>
             <Box>
                 <Image src={logo} w='90px'/>

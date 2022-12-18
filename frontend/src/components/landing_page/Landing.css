@@ -49,3 +49,8 @@
         font-weight:400;
     }
 }
+@media screen and (max-width:500px) {
+    .fourthPartCard:nth-child(even){
+        display: none;
+    }
+}
