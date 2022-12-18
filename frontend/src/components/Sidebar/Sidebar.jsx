@@ -224,10 +224,12 @@ console.log('decoded:', decoded)
           </Accordion>
         </VStack>
         <Box position="absolute" bottom="5" w='85%'>
-        <Flex  justifyContent='center' alignItems='center' gap='1rem' border = '1px solid teal' m='10px auto' p='5px 0' borderRadius='5px'>
-              <CgProfile/>
-              <Text> {decoded.name} </Text>
-        </Flex>
+          <Link as={ReachLink} to="/admin" >
+            <Flex  justifyContent='center' alignItems='center' gap='1rem' border = '1px solid teal' m='10px auto' p='5px 0' borderRadius='5px'>
+                  <CgProfile/>
+                  <Text> {decoded.name} </Text>
+            </Flex>
+          </Link>
           <Button width="100%" colorScheme='teal' variant='outline' w='100%' onClick={handleLogOut}>
             Logout
           </Button>
