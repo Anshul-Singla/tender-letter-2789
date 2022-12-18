@@ -25,33 +25,13 @@ export default function TaskDetail({details,isOpen, onOpen, onClose}) {
    
   }
 
-
-var res="Not Completd"
- if(status){
-  var Buttonstyle={
- backgroundColor:"rgb(63, 252, 0)"
-   }
-  res="Complted"
- }
-// }
-  
-  //  console.log("details",projectname)
-    
- 
-  //  const { isOpen, onOpen, onClose } = useDisclosure()
-
-
-
-  
-// useEffect(()=>{
-//   const handleClick=()=>{
-    
-//    onOpen()
-// }
-   
-// },[])
-
-
+  var res="Not Completd"
+  if(status){
+   var Buttonstyle={
+  backgroundColor:"rgb(63, 252, 0)"
+    }
+   res="Complted"
+  }
 
 const handleStatus=async(id,status)=>{
 
