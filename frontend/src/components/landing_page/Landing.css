@@ -1,3 +1,17 @@
+
+.navbarResponsive{
+    display: none;
+}
+/* ::::::::::::First part css::::::::::::::: */
+/* .firstPartFlex{
+
+} */
+/* @media screen and (max-width:) {
+    
+} */
+.middleName{
+    margin: 25px;
+}
 .secondPartCard{
     cursor: pointer;
     transition: all 200ms ease-in-out;
@@ -12,4 +26,26 @@
 }
 .fourthPartCard:hover{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+@media screen and (max-width:950px) {
+    .navbarResponsive{
+        display: block;
+    }
+    .navbar{
+        display: none;
+    }
+    
+    .middleName{
+        margin: 0;
+    }
+    .firstPartFlex{
+        flex-direction: column;
+    }
+    .firstPartBox{
+        width: 70%;
+        margin: 0 auto;
+    }
+    .firstPartBoxHeading{
+        font-weight:400;
+    }
 }
