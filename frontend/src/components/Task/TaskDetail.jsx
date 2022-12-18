@@ -37,7 +37,7 @@ const handleStatus=async(id,status)=>{
 
 
 try{
-    await axios.post(`https://time-tracker-server.onrender.com/${id}`,{
+    await axios.post(`https://time-tracker-server.onrender.com/task/${id}`,{
       status:!status
     })
    
