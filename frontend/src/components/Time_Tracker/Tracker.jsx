@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { GoPlay } from "react-icons/go";
 import { HiStop } from "react-icons/hi";
 import { RxDotFilled } from "react-icons/rx";
@@ -36,17 +36,45 @@ const Tracker = () => {
     let [value1, onChange1] = useState("9:00")
     const [shour, setshour] = useState([])
     const [ehour, setehour] = useState([])
-console.log("shour",shour,"endhour",ehour)
     const [data, setData] = useState([])
-    const [form, setForm] = useState({
+    const [done, setDone] = useState(true)
+    const initalvalue = {
         desc: "",
         project: "",
         tag: "",
         start_time: shour,
         end_time: ehour,
-    });
-    const [done, setDone] = useState(true)
+    }
+    const [form, setForm] = useState(initalvalue);
+    const [count, setCount] = useState(0);
+    const [is, setIs] = useState(false);
+    const timerId = useRef(null);
     // console.log("data", data)
+
+    // <<<<<<<<<<< TIMER START >>>>>>>>>>>
+    const Start = () => {
+        setIs(true);
+        setDone(!done)
+        // setPlay(play + 1)
+        if (!timerId.current) {
+            timerId.current = setInterval(() => {
+                setCount((count) => count + 1);
+            }, 1000);
+        }
+    }
+
+    // <<<<<<<<<<< TIMER PAUSE >>>>>>>>>>>
+    const Pause = () => {
+        // setPlay(play - 1)
+        setDone(!done)
+        setIs(false);
+        clearTimeout(timerId.current);
+        timerId.current = null;
+    };
+
+    useEffect(() => {
+        document.title = `Today Time Tracker : ${count}`
+    }, [count])
 
 
     // <<<<<<<<<<< GET DATA >>>>>>>>>>
@@ -76,9 +104,8 @@ console.log("shour",shour,"endhour",ehour)
         e.preventDefault()
         await axios.post("http://localhost:8080/tracker/new", form)
         onClose()
-        GetData()
         set();
-
+        GetData()
         toast({
             title: 'Time Entry Created.',
             description: "We've created Time Entry for you.",
@@ -87,6 +114,8 @@ console.log("shour",shour,"endhour",ehour)
             isClosable: true,
             position: "top"
         })
+        setForm(initalvalue)
+
     }
 
     // <<<<<<<<<<< DELETE DATA >>>>>>>>>>
@@ -99,6 +128,7 @@ console.log("shour",shour,"endhour",ehour)
                 })
             );
             rset()
+            set()
             toast({
                 title: `Time Entry Deleted`,
                 description: "We've Deleted Time Entry for you.",
@@ -113,26 +143,9 @@ console.log("shour",shour,"endhour",ehour)
         }
     };
 
-    // <<<<<<<<<<< TOOGLE DATA >>>>>>>>>>
-    let toogle = async (id, done) => {
-        try {
-            await axios
-                .post(`http://localhost:8080/tracker/update/${id}`, {
-                    done: !done,
-                })
-                .then((res) => {
-                    console.log("res", res)
-                    GetData()
-                });
-        } catch (err) {
-            console.log(err.message);
-        }
-        console.log(data);
-    };
-
     // <<<<<<<<<<< UPDATE DATA >>>>>>>>>>
     const handleUpdate = async (id) => {
-        let update = prompt(`Enter New Description For Task ID : ${id}`);
+        let update = prompt(`Enter New Description here`);
         console.log(update);
         try {
             await axios
@@ -145,6 +158,26 @@ console.log("shour",shour,"endhour",ehour)
         }
     };
 
+    // <<<<<<<<<<< TOOGLE DATA >>>>>>>>>>
+    const handleToogle = async (id, done) => {
+
+        try {
+            await axios
+                .patch(`http://localhost:8080/tracker/toggle/${id}`, {
+                    done: !done,
+                })
+                .then((res) => {
+                    // console.log("res", res)
+                    GetData()
+
+                })
+
+        } catch (err) {
+            console.log(err.message);
+        }
+
+        // console.log(data);
+    };
 
     const rset = () => {
         let h = ehour[0] - shour[0];
@@ -175,6 +208,7 @@ console.log("shour",shour,"endhour",ehour)
     // <<<<<<<<<<< HANDLE TIMER >>>>>>>>>>
     const handleTimer = () => {
         setDone(!done)
+
     }
 
 
@@ -189,7 +223,7 @@ console.log("shour",shour,"endhour",ehour)
                 flexDirection={["column", "column", "column"]}
                 gap={"2rem"}
                 w={["100%", "100%", "84%"]}
-                padding={"1rem"}
+                padding={"2rem"}
             >
 
                 {/* <<<<<<<<<<< TOP PART >>>>>>>>>> */}
@@ -205,10 +239,10 @@ console.log("shour",shour,"endhour",ehour)
                     >
                         <Flex gap="4" align={"center"} >
                             {done ?
-                                <GoPlay cursor={"pointer"} onClick={handleTimer} style={{ color: "#17c22e", fontSize: "3rem" }} />
+                                <GoPlay cursor={"pointer"} onClick={Start} style={{ color: "#17c22e", fontSize: "3rem" }} />
                                 : <MdOutlineAddCircleOutline cursor={"pointer"} onClick={handleTimer} style={{ color: "#17c22e", fontSize: "3rem" }} />
                             }
-                            {!done ? <HiStop cursor={"pointer"} onClick={handleTimer} style={{ color: "red", fontSize: "3rem" }} />
+                            {!done ? <HiStop cursor={"pointer"} onClick={Pause} style={{ color: "red", fontSize: "3rem" }} />
                                 : <HiStop cursor={"pointer"} onClick={handleTimer} style={{ color: "grey", fontSize: "3rem" }} />
                             }
 
@@ -250,7 +284,8 @@ console.log("shour",shour,"endhour",ehour)
                                 <Text>Total</Text>
                                 <Text fontSize="1.5rem">
 
-                                    {Math.abs(uptime[0]) + "h" + " " + Math.abs(uptime[1]) + "m"}
+                                    {(data.length) === 0 ? "0h 00min" :
+                                        (Math.abs(uptime[0]) + "h" + " " + Math.abs(uptime[1]) + "min")}
                                 </Text>
                             </Box>
 
@@ -307,8 +342,11 @@ console.log("shour",shour,"endhour",ehour)
                                         setPlay={setPlay}
                                         play={play}
                                         DeleteProject={handleDelete}
-                                        toogle={toogle}
+                                        // toogle={toogle}
+                                        ehour={ehour}
+                                        shour={shour}
                                         UpdateProject={handleUpdate}
+                                        ToggleProject={handleToogle}
                                     />
                                 );
                             })
@@ -319,7 +357,7 @@ console.log("shour",shour,"endhour",ehour)
 
                 {/* <<<<<<<<<<< FORM INPUT >>>>>>>>> */}
                 <Center>
-                    <form style={{ width: "80%", marginTop: "-1.5rem" }}>
+                    <form style={{ width: "100%", marginTop: "-1.5rem" }}>
                         <Fade in={isOpen}>
                             <Divider />
                             <Box
@@ -339,7 +377,7 @@ console.log("shour",shour,"endhour",ehour)
                                             name="desc"
                                             value={form.desc}
                                             onChange={handleChange}
-                                            placeholder="Description"
+                                            placeholder="Describe your task"
                                         ></Input>
                                     </Box>
                                     {/* <Box w="55%">
@@ -380,7 +418,10 @@ console.log("shour",shour,"endhour",ehour)
                                     </Box>
                                     <Box w="40%">
                                         <Text textAlign={"left"}>Add Tags</Text>
-                                        <Input placeholder="Add Tags" name="tag" value={form.tag} onChange={handleChange} />
+                                        <Input placeholder="Add Tag"
+                                            name="tag"
+                                            value={form.tag}
+                                            onChange={handleChange} />
                                     </Box>
                                 </Flex>
 

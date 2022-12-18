@@ -1,8 +1,11 @@
-import { Box, Checkbox, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Checkbox, Flex, Text } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useRef, useState } from "react";
+import { useEffect } from "react";
 import { FaPlay, FaStop } from "react-icons/fa";
 import { FcFolder } from "react-icons/fc";
 import { GrEdit } from "react-icons/gr";
+import { TfiTimer } from "react-icons/tfi";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
 const ActiveProject = ({
@@ -10,13 +13,20 @@ const ActiveProject = ({
     setPlay,
     play,
     DeleteProject,
-    toogle,
+    // toogle,
     UpdateProject,
+    ToggleProject,
+    shour,
+    ehour
 }) => {
-    console.log(props)
+    
     const [count, setCount] = useState(0);
     const [is, setIs] = useState(false);
     const timerId = useRef(null);
+
+    useEffect(() => {
+        document.title = `Today Time Tracker : ${count}`
+    }, [count])
 
     // <<<<<<<<<<< START TIMER >>>>>>>>>>>
     const Start = () => {
@@ -29,7 +39,7 @@ const ActiveProject = ({
         }
     };
 
-    // <<<<<<<<<<< PAUSE START >>>>>>>>>>>
+    // <<<<<<<<<<< TIMER PAUSE >>>>>>>>>>>
     const Pause = () => {
         // setPlay(play - 1)
         setIs(false);
@@ -37,7 +47,7 @@ const ActiveProject = ({
         timerId.current = null;
     };
 
-
+    // console.log("props",props)
     return (
         <Box
             key={props._id}
@@ -48,7 +58,7 @@ const ActiveProject = ({
         >
             <Flex p={".5rem"} justifyContent="space-between">
                 <Flex gap="1rem">
-                    <Checkbox onChange={() => toogle(props._id)}></Checkbox>
+                    <Checkbox onChange={()=>ToggleProject(props._id,props.done)}></Checkbox>
                     <Text>{props.desc}</Text>
                 </Flex>
                 <Flex gap="2rem">
@@ -58,24 +68,34 @@ const ActiveProject = ({
                         <Text>{props.project}</Text>
                     </Flex>
                     <Flex>
-                        {props.start_time} - {props.end_time}
+                    {ehour[0] - shour[0]} h : {ehour[1] - shour[1]}0 min
+                        {/* {`${Number(Number(props.end_time[0])-Number(props.start_time[0]))}hr : 00 min`} */}
                     </Flex>
 
-                    <Text>{count} : sec </Text>
+                    <Center><Flex gap={".5rem"}>{count} <TfiTimer color="grey"/> </Flex></Center>
                     <Flex flexDirection={["column", "column", "row"]} gap="1rem">
                         {!is ? (
-                            <FaPlay color="#17c22e" onClick={Start} />
+                            <FaPlay cursor={"pointer"} color="#17c22e" onClick={Start} />
                         ) : (
-                            <FaStop color="red" onClick={Pause} />
+                            <FaStop cursor={"pointer"} color="red" onClick={Pause} />
                         )}
                         <Text ml="20px" cursor={"pointer"}>
+                        {
+                            props.done ?
                             <GrEdit onClick={() => UpdateProject(props._id)} size={"20px"} />
+                            :null
+                            }
                         </Text>
                         <Text ml="20px" cursor={"pointer"}>
-                            <MdOutlineDeleteOutline
+                           {
+                            props.done ?
+                           <MdOutlineDeleteOutline color="red"
                                 onClick={() => DeleteProject(props._id)}
                                 size={"20px"}
                             />
+                        :null
+                           }
+                        
                         </Text>
                     </Flex>
                 </Flex>

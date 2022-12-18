@@ -76,12 +76,13 @@ timeRoute.delete("/delete/:id", async (req, res) => {
 });
 
 // <<<<<<<<<<<<<<< TOOGLE >>>>>>>>>>>>>
-timeRoute.post("/toggle", async (req, res) => {
+timeRoute.patch("/toggle/:id", async (req, res) => {
+    const { id } = req.params;
     const { done } = req.body;
     // console.log(done);
 
-    if (!done) {
-        const time = await TimeModel.find({ done: done });
+    if (id) {
+        const time = await TimeModel.findByIdAndUpdate({ _id: id }, { done: done });
         res.status(201).send(time);
     } else {
         const time = await TimeModel.find({ done: done });
