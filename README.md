@@ -39,29 +39,37 @@ This project is build on **MERN** (Mongodb , Express , React , NodeJS):-
  
 **Some images of clone**
 - Landing Page & Navbar both normal and responsive
-![landing page](./images/landing_page.png)
-![navbar](./images/navbar.png)
-![responsive Navbar](./images/responsicenavbar.png)
+
+<img src='./images/landing_page.png' alt='landing_Page' width='700px'/>
+<img src='./images/navbar.png' alt='landing_Page' width='700px'/>
+<img src='./images/responsicenavbar.png' alt='landing_Page' width='700px'/>
+
 
 - Pricing Page
-![pricing page](./images/pricing.png)
+
+<img src='./images/pricing.png' alt='landing_Page' width='700px'/>
 
 - Login & Signup
-![Signup](./images/login.png)
-![Login](./images/signup.png) 
+
+<img src='./images/login.png' alt='landing_Page' width='700px'/>
+<img src='./images/signup.png' alt='landing_Page' width='700px'/>
 
 - Time Trackers Page
-![trackers](./images/trackerPage.png)
+
+<img src='./images/trackerPage.png' alt='landing_Page' width='700px'/>
 
 - Projects Page & Form
-![projects](./images/project.png)
-![Projects Form](./images/projectForm.png)
+
+<img src='./images/project.png' alt='landing_Page' width='700px'/>
+<img src='./images/projectForm.png' alt='landing_Page' width='700px'/>
 
 - Tasks Page & form
-![Tasks](./images/task.png)
-![form](./images/tasksform.png)
-![details](./images/tasksdetails.png)
+
+<img src='./images/task.png' alt='landing_Page' width='700px'/>
+<img src='./images/tasksform.png' alt='landing_Page' width='700px'/>
+<img src='./images/tasksdetails.png' alt='landing_Page' width='700px'/>
 
 - Admin Panel with Toast notification feature
-![admin](./images/admin.png)
+
+<img src='./images/admin.png' alt='landing_Page' width='700px'/>
 
